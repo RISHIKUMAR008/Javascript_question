@@ -1,0 +1,20 @@
+// Impure Function Example
+let counter = 0;
+
+function incrementCounter() {
+    counter += 1;
+    return counter;
+}
+
+console.log(incrementCounter()); // Output: 1
+console.log(incrementCounter()); // Output: 2 (Different output for the same function call)
+
+
+
+// Pure Function Example
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(2, 3)); // Output: 5
+console.log(add(2, 3)); // Output: 5 (Always the same output for the same inputs)
