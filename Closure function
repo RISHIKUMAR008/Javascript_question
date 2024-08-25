@@ -1,12 +1,1 @@
-function outerFunction() {
-    let outerVariable = "I'm an outer variable";
 
-    function innerFunction() {
-        console.log(outerVariable); 
-    }
-
-    return innerFunction;
-}
-
-const closureFunction = outerFunction(); // outerFunction is called, returning innerFunction
-closureFunction(); // Logs: "I'm an outer variable"
