@@ -1,0 +1,38 @@
+function findEquilibriumIndex(arr) {
+    const n = arr.length;
+
+    // Step 1: Calculate the total sum of the array
+    let totalSum = 0;
+    for (let i = 0; i < n; i++) {
+        totalSum += arr[i];
+    }
+
+    // Step 2: Initialize left sum to 0
+    let leftSum = 0;
+
+    // Step 3: Iterate through the array to find the equilibrium index
+    for (let i = 0; i < n; i++) {
+        // Step 4: Calculate right sum
+        let rightSum = totalSum - leftSum - arr[i];
+
+        // Check if left sum equals right sum
+        if (leftSum === rightSum) {
+            return i;  // Equilibrium index found
+        }
+
+        // Update left sum for next iteration
+        leftSum += arr[i];
+    }
+
+    return -1;  // No equilibrium index found
+}
+
+// Example usage:
+const array1 = [1, 2, 3, 4, 6];
+console.log(findEquilibriumIndex(array1));  // Output: 3 (since 1+2+3 == 6)
+
+const array2 = [1, 1, 1, 1, 1, 1];
+console.log(findEquilibriumIndex(array2));  // Output: 2 (since 1+1 == 1+1+1)
+
+const array3 = [1, 2, 3];
+console.log(findEquilibriumIndex(array3));  // Output: -1 (no equilibrium index)
