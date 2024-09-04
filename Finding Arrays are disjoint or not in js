@@ -1,0 +1,20 @@
+function areDisjoint(arr1, arr2) {
+    for (let i = 0; i < arr1.length; i++) {
+        for (let j = 0; j < arr2.length; j++) {
+            if (arr1[i] === arr2[j]) {
+                return false;  // If a common element is found, the arrays are not disjoint
+            }
+        }
+    }
+
+    return true;  // No common elements found, the arrays are disjoint
+}
+
+// Example usage:
+const array1 = [1, 2, 3, 4];
+const array2 = [5, 6, 7, 8];
+console.log(areDisjoint(array1, array2));  // Output: true
+
+const array3 = [1, 2, 3, 4];
+const array4 = [4, 5, 6, 7];
+console.log(areDisjoint(array3, array4));  // Output: false
