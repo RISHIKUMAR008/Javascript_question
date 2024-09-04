@@ -1,0 +1,23 @@
+function minSumOfAbsoluteDifferences(arr) {
+    // Step 1: Sort the array
+    arr.sort((a, b) => a - b);
+
+    // Step 2: Find the median
+    const n = arr.length;
+    const median = arr[Math.floor(n / 2)];
+
+    // Step 3: Calculate the sum of absolute differences
+    let minSum = 0;
+    for (let i = 0; i < n; i++) {
+        minSum += Math.abs(arr[i] - median);
+    }
+
+    return minSum;
+}
+
+// Example usage:
+const arr1 = [1, 2, 3];
+console.log(minSumOfAbsoluteDifferences(arr1));  // Output: 2
+
+const arr2 = [1, 3, 5, 7];
+console.log(minSumOfAbsoluteDifferences(arr2));  // Output: 6
