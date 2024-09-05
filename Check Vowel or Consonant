@@ -1,0 +1,25 @@
+function isVowelOrConsonant(char) {
+    // Manually handle uppercase and lowercase alphabets
+    let vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+    
+    // Check if the input is a single character and within alphabet range
+    if (char.length === 1 && 
+       ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z'))) {
+        
+        // Manually compare against the vowel array
+        for (let i = 0; i < vowels.length; i++) {
+            if (char === vowels[i]) {
+                return `${char} is a vowel.`;
+            }
+        }
+        return `${char} is a consonant.`;
+        
+    } else {
+        return "Please enter a valid alphabet character.";
+    }
+}
+
+// Example usage:
+console.log(isVowelOrConsonant('E'));  // Output: E is a vowel.
+console.log(isVowelOrConsonant('z'));  // Output: z is a consonant.
+console.log(isVowelOrConsonant('1'));  // Output: Please enter a valid alphabet character.
