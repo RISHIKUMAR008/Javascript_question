@@ -1,0 +1,21 @@
+const array = [1, 2, 2, 3, 4, 4, 5];
+const uniqueArray = [];
+
+for (let i = 0; i < array.length; i++) {
+    let isDuplicate = false;
+
+    // Check if the element already exists in uniqueArray
+    for (let j = 0; j < uniqueArray.length; j++) {
+        if (array[i] === uniqueArray[j]) {
+            isDuplicate = true;
+            break;
+        }
+    }
+
+    // If the element is not found in uniqueArray, add it
+    if (!isDuplicate) {
+        uniqueArray.push(array[i]);
+    }
+}
+
+console.log(uniqueArray); // Output: [1, 2, 3, 4, 5]
