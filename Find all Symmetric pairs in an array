@@ -1,0 +1,24 @@
+function findSymmetricPairs(arr) {
+    let pairsMap = {};
+    let result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        let first = arr[i][0];
+        let second = arr[i][1];
+
+        // Check if the reverse pair (second, first) exists in pairsMap
+        if (pairsMap[second] !== undefined && pairsMap[second] === first) {
+            result.push([first, second]);
+        } else {
+            // Store the current pair in the map
+            pairsMap[first] = second;
+        }
+    }
+
+    return result;
+}
+
+const arr = [[1, 2], [2, 1], [3, 4], [5, 9], [4, 3]];
+const symmetricPairs = findSymmetricPairs(arr);
+
+console.log(symmetricPairs);  // Output: [ [ 2, 1 ], [ 4, 3 ] ]
