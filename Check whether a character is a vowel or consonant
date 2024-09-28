@@ -1,0 +1,24 @@
+function checkVowelOrConsonant(char) {
+  // Convert character to lowercase to handle both uppercase and lowercase input
+  const lowerChar = char.toLowerCase();
+
+  // Define vowels
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+  // Check if the character is a letter
+  if (lowerChar >= 'a' && lowerChar <= 'z') {
+    // Check if the character is in the vowels array
+    if (vowels.includes(lowerChar)) {
+      console.log(`${char} is a vowel.`);
+    } else {
+      console.log(`${char} is a consonant.`);
+    }
+  } else {
+    console.log(`${char} is not a letter.`);
+  }
+}
+
+// Example usage
+checkVowelOrConsonant('A'); // Output: A is a vowel.
+checkVowelOrConsonant('b'); // Output: b is a consonant.
+checkVowelOrConsonant('1'); // Output: 1 is not a letter.
