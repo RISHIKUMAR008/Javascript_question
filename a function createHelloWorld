@@ -1,0 +1,13 @@
+//   To create a function createHelloWorld that always returns the string "Hello World" when invoked, you can implement it as follows:
+
+
+
+
+function createHelloWorld() {
+  return function() {
+    return "Hello World";
+  };
+}
+
+const f = createHelloWorld();
+console.log(f()); // "Hello World"
