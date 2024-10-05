@@ -13,3 +13,20 @@ function compose(functions) {
     return functions.reduceRight((acc, fn) => fn(acc), x);
   };
 }
+
+
+- - -- - - - - - -- - - - -
+
+
+var compose = function(fns) {
+    
+  
+        return function (e) {
+        let an = e;
+        for (let i = fns.length - 1; i >= 0; i--) {
+            an = fns[i](an);
+        }
+        return an;
+        
+    }
+};
