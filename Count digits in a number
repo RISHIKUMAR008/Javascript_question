@@ -1,0 +1,36 @@
+function countDigits(n) {   
+    let cnt = 0;    
+    while (n > 0) {  
+        cnt = cnt + 1;        
+        n = Math.floor(n / 10);
+    } 
+    return cnt;
+}
+function main() {
+    let N = 329823;
+    console.log("N: " + N);
+    let digits = countDigits(N);
+    console.log("Number of Digits in N: " + digits);
+}
+main();
+
+                            
+
+- - - -   -  - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+function countDigits(number) {
+  let count = 0;
+  let num = Math.abs(number); 
+  
+  if (num === 0) {
+    return 1;
+  }
+  
+  while (num > 0) {
+    num = Math.floor(num / 10); 
+    count++;
+  }
+  
+  return count;
+}
+const number = 12345;
+console.log(`Number of digits in ${number}: ${countDigits(number)}`);
