@@ -1,0 +1,31 @@
+function findElement(arr , n)
+	{
+	
+		for(i = 1; i < n; i++){
+		let leftSum = 0;
+		for(j = i-1; j >= 0; j--){
+			leftSum += arr[j];
+		}
+		
+		let rightSum = 0;
+		for(k = i+1; k < n; k++){
+			rightSum += arr[k];
+		}
+
+		if(leftSum === rightSum){
+			return arr[i];
+		}
+		
+		}
+		
+		return -1;
+	}
+	var arr = [ 1, 4, 2, 5 ];
+	var n = arr.length;
+	document.write(findElement(arr, n));
+	
+	document.write("<br><br>")
+	
+	var arr = [ 2, 3, 4, 1, 4, 5 ];
+	var n = arr.length;
+	document.write(findElement(arr, n));
