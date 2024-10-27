@@ -1,0 +1,62 @@
+function rearrangeMaxMin(arr) {
+    const n = arr.length;
+    const result = new Array(n);  // New array to store rearranged elements
+    let left = 0;                 // Pointer to the beginning of the array
+    let right = n - 1;            // Pointer to the end of the array
+    let isMaxTurn = true;         // Flag to alternate between max and min
+
+    for (let i = 0; i < n; i++) {
+        if (isMaxTurn) {
+            result[i] = arr[right--];
+        } else {
+            result[i] = arr[left++];
+        }
+        isMaxTurn = !isMaxTurn;   // Toggle between max and min
+    }
+
+    // Copy the rearranged elements back to the original array
+    for (let i = 0; i < n; i++) {
+        arr[i] = result[i];
+    }
+}
+
+// Example usage
+const arr = [1, 2, 3, 4, 5, 6, 7];
+rearrangeMaxMin(arr);
+console.log("Rearranged array:", arr);
+
+
+
+
+
+
+
+
+
+- - - - - - - - - - - - - -- - -- - - - - -- - - -  --  -- - - - - - 
+function rearrange(arr) {
+    let temp = new Array(arr.length);
+    let small = 0, large = arr.length - 1;
+    for (let i = 0; i < arr.length; i++) {
+        if (flag)
+            temp[i] = arr[large--];
+        else
+            temp[i] = arr[small++];
+
+        flag = !flag;
+    }
+    for (let i = 0; i < arr.length; i++)
+        arr[i] = temp[i];
+}
+let arr = [1, 2, 3, 4, 5, 6];
+
+console.log("Original Array");
+for (let i = 0; i < arr.length; i++)
+    console.log(arr[i] + " ");
+
+rearrange(arr);
+
+console.log("\nModified Array");
+for (let i = 0; i < arr.length; i++)
+    console.log(arr[i] + " ");
+
