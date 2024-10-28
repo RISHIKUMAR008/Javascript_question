@@ -1,0 +1,21 @@
+    function areEqual(arr1, arr2)
+    {
+        let N = arr1.length;
+        let M = arr2.length;
+        if (N != M)
+            return false;
+        arr1.sort();
+        arr2.sort();
+        for (let i = 0; i < N; i++)
+            if (arr1[i] != arr2[i])
+                return false;
+        return true;
+    }
+
+    let arr1 = [3, 5, 2, 5, 2];
+    let arr2 = [2, 3, 5, 5, 2];
+
+    if (areEqual(arr1, arr2))
+        console.log("Yes");
+    else
+        console.log("No");
