@@ -1,0 +1,34 @@
+// Function to find the minimum number of platforms required
+function findPlatform(arr, dep, n) {
+    // plat_needed indicates number of platforms needed at a time
+    let plat_needed = 1;
+    let result = 1;
+
+    // Run a nested loop to find the overlap
+    for (let i = 0; i < n; i++) {
+        // Initially one platform is needed
+        plat_needed = 1;
+        for (let j = 0; j < n; j++) {
+            if (i !== j) {
+                // Increment plat_needed when there is an overlap
+                if (arr[i] >= arr[j] && dep[j] >= arr[i]) {
+                    plat_needed++;
+                }
+            }
+        }
+
+        // Update the result
+        result = Math.max(plat_needed, result);
+    }
+
+    return result;
+}
+
+// Driver Code
+// Train 1 => Arrival : 01:00, Departure : 09:00
+// Train 2 => Arrival : 03:00, Departure : 04:00
+// Train 3 => Arrival : 05:00, Departure : 06:00
+let arr = [100, 300, 500];
+let dep = [900, 400, 600];
+let n = arr.length;
+console.log(findPlatform(arr, dep, n));
