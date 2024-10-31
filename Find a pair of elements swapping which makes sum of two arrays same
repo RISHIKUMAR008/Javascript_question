@@ -1,0 +1,44 @@
+
+    function  getSum(X,n)
+    {
+        let sum = 0;
+        for (let i = 0; i < n; i++)
+            sum += X[i];
+        return sum;
+    }
+    
+    // Function to prints elements to be swapped
+    function findSwapValues(A,n,B,m)
+    {
+        // Calculation of sums from both arrays
+        let sum1 = getSum(A, n);
+        let sum2 = getSum(B, m);
+   
+        // Look for val1 and val2, such that
+        // sumA - val1 + val2 = sumB - val2 + val1
+        let newsum1, newsum2, val1 = 0, val2 = 0;
+        for (let i = 0; i < n; i++) 
+        {
+            for (let j = 0; j < m; j++) 
+            {
+                newsum1 = sum1 - A[i] + B[j];
+                newsum2 = sum2 - B[j] + A[i];
+                if (newsum1 == newsum2) 
+                {
+                    val1 = A[i];
+                    val2 = B[j];
+                }
+            }
+        }
+   
+        document.write(val1+" "+val2);
+    }
+    
+    // driver program
+    let A=[4, 1, 2, 1, 1, 2];
+    let n = A.length;
+    let B=[3, 6, 3, 3 ];
+    let m = B.length;
+    // Call to function
+    findSwapValues(A, n, B, m);
+    
