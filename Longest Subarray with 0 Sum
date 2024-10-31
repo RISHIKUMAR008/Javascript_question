@@ -1,0 +1,31 @@
+// Function to find the length of the 
+// largest subarray with sum 0
+function maxLen(arr) {
+
+    const n = arr.length;
+
+    // Initialize the result
+    let max_len = 0;
+
+    // Loop through each starting point
+    for (let i = 0; i < n; i++) {
+    
+        // Initialize the current sum for this starting point
+        let curr_sum = 0;
+
+        // Try all subarrays starting from 'i'
+        for (let j = i; j < n; j++) {
+        
+            // Add the current element to curr_sum
+            curr_sum += arr[j];
+
+            // If curr_sum becomes 0, update max_len if required
+            if (curr_sum === 0)
+                max_len = Math.max(max_len, j - i + 1);
+        }
+    }
+    return max_len;
+}
+
+const arr = [15, -2, 2, -8, 1, 7, 10, 23];
+console.log(maxLen(arr));
