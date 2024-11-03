@@ -1,0 +1,25 @@
+Input: nums = [1,1,1,2,2,3]
+Output: 5, nums = [1,1,2,2,3,_]
+Explanation: Your function should return k = 5, with the first five elements of nums being 1, 1, 2, 2 and 3 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+
+
+
+
+function removeDuplicates(nums) {
+    if (nums.length <= 2) return nums.length; // If there are 2 or fewer elements, no duplicates need to be removed
+
+    let k = 2; // Start from index 2, since the first two elements can stay as they are
+
+    for (let i = 2; i < nums.length; i++) {
+        // If the current element is not the same as the element at k - 2,
+        // it means we can keep this element because it would not exceed two duplicates.
+        if (nums[i] !== nums[k - 2]) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
+
+    return k;
+}
