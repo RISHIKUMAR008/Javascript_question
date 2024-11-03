@@ -1,0 +1,25 @@
+Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+Example 1:
+Input: nums = [3,2,3]
+Output: 3
+
+
+
+function majorityElement(nums) {
+    let candidate = nums[0];
+    let count = 0;
+
+    // Step 1: Find the candidate
+    for (let num of nums) {
+        if (count === 0) {
+            candidate = num;
+        }
+        count += (num === candidate) ? 1 : -1;
+    }
+
+    // Step 2: Since it's guaranteed that a majority element exists,
+    // `candidate` will be the majority element
+    return candidate;
+}
