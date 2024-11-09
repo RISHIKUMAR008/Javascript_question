@@ -1,0 +1,41 @@
+class RandomizedSet {
+    constructor() {
+        this.values = [];  // Array to store values
+        this.map = new Map();  // Map to store value -> index
+    }
+
+    insert(val) {
+        if (this.map.has(val)) {
+            return false;  // Value already present, return false
+        }
+        // Map the value to the current length of the values array
+        this.map.set(val, this.values.length);
+        this.values.push(val);  // Add value to the end of the array
+        return true;
+    }
+
+    remove(val) {
+        if (!this.map.has(val)) {
+            return false;  // Value not present, return false
+        }
+        // Get the index of the element to be removed
+        const index = this.map.get(val);
+        const lastElement = this.values[this.values.length - 1];
+
+        // Swap the last element with the element to be removed
+        this.values[index] = lastElement;
+        this.map.set(lastElement, index);
+
+        // Remove the last element from the array and map
+        this.values.pop();
+        this.map.delete(val);
+
+        return true;
+    }
+
+    getRandom() {
+        // Get a random index in the values array
+        const randomIndex = Math.floor(Math.random() * this.values.length);
+        return this.values[randomIndex];
+    }
+}
