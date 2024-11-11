@@ -1,0 +1,31 @@
+function canCompleteCircuit(gas, cost) {
+  const n = gas.length;
+
+  // Calculate total gas and total cost
+  let totalGas = 0;
+  let totalCost = 0;
+  for (let i = 0; i < n; i++) {
+    totalGas += gas[i];
+    totalCost += cost[i];
+  }
+
+  // If total gas is less than total cost, it's impossible to complete the circuit
+  if (totalGas < totalCost) {
+    return -1;
+  }
+
+  let resultIndex = 0;
+  let tank = 0;
+
+  for (let i = 0; i < n; i++) {
+    tank += gas[i] - cost[i];
+
+    // If tank becomes negative, we cannot start from the current index
+    if (tank < 0) {
+      resultIndex = i + 1;
+      tank = 0;
+    }
+  }
+
+  return resultIndex;
+}
