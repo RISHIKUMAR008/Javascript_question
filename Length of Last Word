@@ -1,0 +1,12 @@
+function lengthOfLastWord(s) {
+    s = s.trim();  // Remove any trailing spaces
+    const lastSpaceIndex = s.lastIndexOf(' ');  // Find the index of the last space
+
+    // Return the length of the substring after the last space
+    return s.length - lastSpaceIndex - 1;
+}
+
+// Example usage
+console.log(lengthOfLastWord("Hello World"));               // Output: 5
+console.log(lengthOfLastWord("   fly me   to   the moon  ")); // Output: 4
+console.log(lengthOfLastWord("luffy is still joyboy"));     // Output: 6
