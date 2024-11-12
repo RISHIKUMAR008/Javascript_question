@@ -1,0 +1,26 @@
+function fullJustify(words, maxWidth) {
+    const result = [];
+    let line = [];
+    let lineLength = 0;
+
+    for (let word of words) {
+        // Check if adding the next word exceeds maxWidth
+        if (lineLength + word.length + line.length > maxWidth) {
+            // Step 2: Distribute spaces for the current line
+            for (let i = 0; i < maxWidth - lineLength; i++) {
+                line[i % (line.length - 1 || 1)] += ' '; // Distribute spaces
+            }
+            result.push(line.join(''));
+            line = []; // Reset line
+            lineLength = 0; // Reset line length
+        }
+
+        line.push(word);
+        lineLength += word.length;
+    }
+
+    // Step 3: Handle the last line (left-justified)
+    result.push(line.join(' ').padEnd(maxWidth, ' '));
+
+    return result;
+}
