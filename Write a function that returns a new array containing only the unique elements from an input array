@@ -1,0 +1,5 @@
+function getUniqueElements(inputArray) { 
+
+  return […new Set(inputArray)]; 
+
+} 
