@@ -1,0 +1,7 @@
+function findElementIndex(arr, element) { 
+
+  const index = arr.indexOf(element); 
+
+  return index !== -1 ? index : -1; 
+
+} 
