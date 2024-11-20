@@ -1,0 +1,39 @@
+How to modify an object’s property in an array of objects in JavaScript 
+
+
+let employees_data = [
+    {
+        employee_id: 1,
+        employee_name: "Aman",
+    },
+    {
+        employee_id: 2,
+        employee_name: "Bhargava",
+    },
+    {
+        employee_id: 3,
+        employee_name: "Chaitanya",
+    },
+];
+
+const modifiedEmployees = employees_data.map(obj => {
+    if (obj.employee_id === 2) {
+        return { ...obj, employee_name: "rahul" };
+    }
+    return obj;
+});
+
+console.log(modifiedEmployees);
+
+
+
+
+
+Output
+
+
+[
+  { employee_id: 1, employee_name: 'Aman' },
+  { employee_id: 2, employee_name: 'rahul' },
+  { employee_id: 3, employee_name: 'Chaitanya' }
+]
