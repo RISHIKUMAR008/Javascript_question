@@ -1,0 +1,30 @@
+const originalArray = [1, 2, 3, 4, 5];
+const copiedArray = [...originalArray];
+
+// Output: [1, 2, 3, 4, 5]
+console.log(copiedArray);
+
+
+
+
+
+const originalArray = [1, 2, 3, 4, 5];
+const copiedArray = originalArray.slice();
+
+// Output: [1, 2, 3, 4, 5]
+console.log(copiedArray);
+
+
+
+
+const sourceArray = [1, 2, 3, 4, 5];
+const newArray = [].concat(sourceArray);
+
+console.log(newArray);
+
+
+
+const arr = [5, 10, 15, 20, 25];
+const result = arr.map(item => item);
+
+console.log(result);
