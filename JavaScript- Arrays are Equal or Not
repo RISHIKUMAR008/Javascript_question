@@ -1,0 +1,28 @@
+1. Using the JSON.stringify() Method
+
+let a1 = [1, 2, 3, 5];
+let a2 = [1, 2, 3, 5];
+
+if (JSON.stringify(a1) == JSON.stringify(a2))
+    console.log("True");
+else
+    console.log("False");
+
+
+2. Using JavaScript for Loop
+
+let a = [1, 2, 3, 5];
+let b = [1, 2, 3, 5];
+
+// If length is not equal
+if (a.length != b.length)
+    console.log(false);
+else {
+
+    // Comparing each element of array
+    for (let i = 0; i < a.length; i++)
+        if (a[i] != b[i])
+            return console.log(false);
+    ;
+    return console.log(true);
+}
