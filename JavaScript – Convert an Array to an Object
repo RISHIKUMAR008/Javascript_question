@@ -1,0 +1,16 @@
+let a = [1, 2, 3, 4];
+let obj = Object.assign({}, a);
+console.log(JSON.stringify(obj));
+
+Output
+{"0":1,"1":2,"2":3,"3":4}
+
+
+let a = ['GFG1', 'GFG2', 'GFG3', 'GFG4'];
+let rv = {};
+for (let i = 0; i < a.length; ++i)
+    rv[i] = a[i];
+console.log(JSON.stringify(rv));
+
+Output
+{"0":"GFG1","1":"GFG2","2":"GFG3","3":"GFG4"}
