@@ -1,0 +1,26 @@
+function findUnion(array1, array2) {
+    const union = [];
+    for (let i = 0; i < array1.length; i++) {
+        union.push(array1[i]);
+    }
+    for (let j = 0; j < array2.length; j++) {
+        let isPresent = false;
+        for (let k = 0; k < union.length; k++) {
+            if (array2[j] === union[k]) {
+                isPresent = true;
+                break;
+            }
+        }
+        if (!isPresent) {
+            union.push(array2[j]);
+        }
+    }
+    return union;
+}
+
+// Example usage:
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [4, 5, 6, 7, 8];
+
+const union = findUnion(array1, array2);
+console.log(union); // Output: [1, 2, 3, 4, 5, 6, 7, 8]
