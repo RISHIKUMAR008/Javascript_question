@@ -1,0 +1,28 @@
+function findIntersection(array1, array2) {
+    const result = [];
+    for (let i = 0; i < array1.length; i++) {
+        for (let j = 0; j < array2.length; j++) {
+            if (array1[i] === array2[j]) {
+                // Check if the element is already in the result to avoid duplicates
+                let alreadyExists = false;
+                for (let k = 0; k < result.length; k++) {
+                    if (result[k] === array1[i]) {
+                        alreadyExists = true;
+                        break;
+                    }
+                }
+                if (!alreadyExists) {
+                    result.push(array1[i]);
+                }
+            }
+        }
+    }
+    return result;
+}
+
+// Example usage:
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [4, 5, 6, 7, 8];
+
+const intersection = findIntersection(array1, array2);
+console.log(intersection); // Output: [4, 5]
