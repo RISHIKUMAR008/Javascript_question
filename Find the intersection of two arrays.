@@ -26,3 +26,36 @@ const array2 = [4, 5, 6, 7, 8];
 
 const intersection = findIntersection(array1, array2);
 console.log(intersection); // Output: [4, 5]
+
+
+
+
+
+
+
+
+
+// JavaScript program for intersection of two arrays with
+// distinct elements using nested loops
+
+function intersection(a, b) {
+    let res = [];
+
+    for (let i = 0; i < a.length; i++) {
+        for (let j = 0; j < b.length; j++) {
+            if (a[i] === b[j]) {
+                res.push(a[i]);
+                break;
+            }
+        }
+    }
+
+    return res;
+}
+
+let a = [5, 6, 2, 1, 4];
+let b = [7, 9, 4, 2];
+
+let res = intersection(a, b);
+
+console.log(res.join(" "));
