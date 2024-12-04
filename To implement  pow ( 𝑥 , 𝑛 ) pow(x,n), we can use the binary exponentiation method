@@ -1,0 +1,24 @@
+function myPow(x, n) {
+    if (n === 0) return 1; // Base case: anything raised to 0 is 1
+
+    if (n < 0) {
+        x = 1 / x; // Invert the base if n is negative
+        n = -n;    // Make n positive
+    }
+
+    let result = 1;
+    while (n > 0) {
+        if (n % 2 === 1) { // If n is odd
+            result *= x;
+        }
+        x *= x; // Square the base
+        n = Math.floor(n / 2); // Halve n
+    }
+
+    return result;
+}
+
+// Examples
+console.log(myPow(2.00000, 10)); // Output: 1024.00000
+console.log(myPow(2.10000, 3));  // Output: 9.26100
+console.log(myPow(2.00000, -2)); // Output: 0.25000
