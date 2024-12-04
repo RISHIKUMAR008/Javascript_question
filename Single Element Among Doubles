@@ -1,0 +1,28 @@
+function find_single(arr) {
+
+    // Iterate over every element
+    for (let i of arr) {
+    
+        // Initialize count to 0
+        let count = 0;
+        for (let j of arr) {
+        
+            // Count the frequency of the element
+            if (i === j) {
+                count++;
+            }
+        }
+        
+        // If the frequency of the element is one
+        if (count === 1) {
+            return i;
+        }
+    }
+    
+    // If no element exists at most once
+    return -1;
+}
+
+// Driver code
+const arr = [2, 3, 5, 4, 5, 3, 4];
+console.log(find_single(arr));
