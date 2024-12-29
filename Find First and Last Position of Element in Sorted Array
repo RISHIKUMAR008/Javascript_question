@@ -1,0 +1,36 @@
+function searchRange(nums, target) {
+    const findBoundary = (isLeft) => {
+        let left = 0, right = nums.length - 1;
+        let boundary = -1;
+        
+        while (left <= right) {
+            const mid = Math.floor((left + right) / 2);
+            
+            if (nums[mid] === target) {
+                boundary = mid;
+                if (isLeft) {
+                    right = mid - 1; // Search left
+                } else {
+                    left = mid + 1; // Search right
+                }
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        
+        return boundary;
+    };
+    
+    const leftIndex = findBoundary(true);
+    if (leftIndex === -1) return [-1, -1];
+    
+    const rightIndex = findBoundary(false);
+    return [leftIndex, rightIndex];
+}
+
+// Example Usage
+console.log(searchRange([5, 7, 7, 8, 8, 10], 8)); // Output: [3, 4]
+console.log(searchRange([5, 7, 7, 8, 8, 10], 6)); // Output: [-1, -1]
+console.log(searchRange([], 0));                 // Output: [-1, -1]
