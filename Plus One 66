@@ -1,0 +1,32 @@
+function plusOne(digits) {
+    let carry = 1; // Start with a carry of 1 because we are incrementing by one.
+
+    for (let i = digits.length - 1; i >= 0; i--) {
+        let sum = digits[i] + carry;
+        if (sum >= 10) {
+            digits[i] = sum - 10; // Subtract 10 to get the digit at this place.
+            carry = 1; // Carry forward 1.
+        } else {
+            digits[i] = sum; // No carry, so update the digit and stop.
+            carry = 0;
+            break;
+        }
+    }
+
+    // If there's still a carry left, we need to add it to the front manually.
+    if (carry === 1) {
+        // Create a new array with the carry at the start.
+        let result = [1];
+        for (let i = 0; i < digits.length; i++) {
+            result[i + 1] = digits[i];
+        }
+        return result;
+    }
+
+    return digits;
+}
+
+// Example usage:
+console.log(plusOne([1, 2, 3])); // Output: [1, 2, 4]
+console.log(plusOne([4, 3, 2, 1])); // Output: [4, 3, 2, 2]
+console.log(plusOne([9, 9, 9]));    // Output: [1, 0, 0, 0]
