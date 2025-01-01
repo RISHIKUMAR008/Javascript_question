@@ -1,0 +1,26 @@
+function addBinary(a, b) {
+    let result = ""; // To store the resulting binary string.
+    let carry = 0; // Initialize carry to 0.
+
+    let i = a.length - 1; // Pointer for string `a`.
+    let j = b.length - 1; // Pointer for string `b`.
+
+    // Process until both strings are done or there's no carry.
+    while (i >= 0 || j >= 0 || carry > 0) {
+        let digitA = i >= 0 ? a[i] - '0' : 0; // Get the digit from `a`, or 0 if `i` is out of bounds.
+        let digitB = j >= 0 ? b[j] - '0' : 0; // Get the digit from `b`, or 0 if `j` is out of bounds.
+
+        let sum = digitA + digitB + carry; // Add digits and carry.
+        result = (sum % 2) + result; // Append the remainder to the result.
+        carry = Math.floor(sum / 2); // Update carry.
+
+        i--; // Move to the next digit in `a`.
+        j--; // Move to the next digit in `b`.
+    }
+
+    return result;
+}
+
+// Example usage:
+console.log(addBinary("11", "1"));    // Output: "100"
+console.log(addBinary("1010", "1011")); // Output: "10101"
