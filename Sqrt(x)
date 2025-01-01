@@ -1,0 +1,24 @@
+function mySqrt(x) {
+    if (x === 0) return 0; // Edge case for 0.
+    let left = 1, right = x, result = 0;
+
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2); // Calculate the midpoint.
+        if (mid * mid === x) {
+            return mid; // Perfect square case.
+        } else if (mid * mid < x) {
+            result = mid; // Store the current mid as a potential answer.
+            left = mid + 1; // Search in the right half.
+        } else {
+            right = mid - 1; // Search in the left half.
+        }
+    }
+
+    return result;
+}
+
+// Example usage:
+console.log(mySqrt(4)); // Output: 2
+console.log(mySqrt(8)); // Output: 2
+console.log(mySqrt(0)); // Output: 0
+console.log(mySqrt(16)); // Output: 4
