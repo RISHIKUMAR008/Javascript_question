@@ -1,0 +1,48 @@
+class ListNode {
+  constructor(val = 0, next = null) {
+    this.val = val;
+    this.next = next;
+  }
+}
+
+function deleteDuplicates(head) {
+  let current = head;
+  while (current && current.next) {
+    if (current.val === current.next.val) {
+      current.next = current.next.next; // Skip the duplicate node
+    } else {
+      current = current.next; // Move to the next node
+    }
+  }
+  return head;
+}
+
+// Helper function to create a linked list from an array
+function createLinkedList(arr) {
+  if (arr.length === 0) return null;
+  const head = new ListNode(arr[0]);
+  let current = head;
+  for (let i = 1; i < arr.length; i++) {
+    current.next = new ListNode(arr[i]);
+    current = current.next;
+  }
+  return head;
+}
+
+// Helper function to convert a linked list to an array
+function linkedListToArray(head) {
+  const result = [];
+  let current = head;
+  while (current) {
+    result.push(current.val);
+    current = current.next;
+  }
+  return result;
+}
+
+// Example usage
+const inputList = [1, 1, 2, 3, 3];
+const head = createLinkedList(inputList);
+const newHead = deleteDuplicates(head);
+const outputList = linkedListToArray(newHead);
+console.log(outputList); // Output: [1, 2, 3]
