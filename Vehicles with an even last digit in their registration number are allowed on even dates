@@ -1,0 +1,47 @@
+Explanation:
+Function Input:
+
+registrationNumbers: Array containing the last digits of the vehicles' registration numbers.
+date: Current date (positive integer).
+fine: Fine amount for each rule violation.
+Logic:
+
+If the date is even, vehicles with an odd last digit are fined.
+If the date is odd, vehicles with an even last digit are fined.
+The totalFine is incremented each time a rule is violated.
+Output:
+
+The total fine collected is returned and printed.
+Example Run:
+For the input:
+
+registrationNumbers = [3, 6, 7, 4, 9]
+date = 5 (odd)
+fine = 100
+
+
+
+
+function calculateFine(registrationNumbers, date, fine) {
+    let totalFine = 0;
+
+    // Iterate through the registration numbers
+    for (let num of registrationNumbers) {
+        // Odd date -> odd last digit allowed, Even date -> even last digit allowed
+        if ((date % 2 === 0 && num % 2 !== 0) || (date % 2 !== 0 && num % 2 === 0)) {
+            totalFine += fine;
+        }
+    }
+
+    return totalFine;
+}
+
+// Example usage:
+// Input data
+const registrationNumbers = [3, 6, 7, 4, 9]; // Last digits of registration numbers
+const date = 5; // Current date
+const fine = 100; // Fine for violating the rule
+
+// Calculate and output total fine
+const totalFine = calculateFine(registrationNumbers, date, fine);
+console.log("Total fine collected: " + totalFine);
