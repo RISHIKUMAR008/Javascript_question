@@ -1,0 +1,18 @@
+function areChractersUnique(str)
+{
+        let n = str.length;
+        for(let i = 0; i < n; i++)
+        for(let j = i + 1; j < n; j++)
+            if(str[i] == str[j])
+                return false;
+    return true;
+}
+
+let s = "aaabbccdaa";
+if (areChractersUnique(s))
+    // Print "Yes" if all characters are unique. 
+    console.log("Yes");
+else
+    console.log("No");
+
+// The code is contributed by Arushi Goel.
