@@ -1,0 +1,57 @@
+function removeComments(source) {
+    let result = [];
+    let inBlock = false;
+    let newLine = "";
+
+    for (const line of source) {
+        let i = 0;
+        if (!inBlock) newLine = ""; // Start a new line if not inside a block comment
+
+        while (i < line.length) {
+            if (!inBlock && i + 1 < line.length && line[i] === '/' && line[i + 1] === '*') {
+                // Start of block comment
+                inBlock = true;
+                i += 2;
+            } else if (inBlock && i + 1 < line.length && line[i] === '*' && line[i + 1] === '/') {
+                // End of block comment
+                inBlock = false;
+                i += 2;
+            } else if (!inBlock && i + 1 < line.length && line[i] === '/' && line[i + 1] === '/') {
+                // Line comment
+                break; // Ignore the rest of the line
+            } else if (!inBlock) {
+                // Normal character
+                newLine += line[i];
+                i++;
+            } else {
+                // Inside block comment, skip
+                i++;
+            }
+        }
+
+        if (!inBlock && newLine.length > 0) {
+            result.push(newLine); // Add the processed line if it's not empty
+        }
+    }
+
+    return result;
+}
+
+// Example usage
+const source = [
+    "/*Test program */",
+    "int main()",
+    "{ ",
+    "  // variable declaration ",
+    "int a, b, c;",
+    "/* This is a test",
+    "   multiline  ",
+    "   comment for ",
+    "   testing */",
+    "a = b + c;",
+    "}"
+];
+
+const output = removeComments(source);
+
+console.log(output.join("\n"));
