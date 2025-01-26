@@ -1,0 +1,23 @@
+function dominantIndex(nums) {
+    let max = -1;
+    let secondMax = -1;
+    let maxIndex = -1;
+
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] > max) {
+            secondMax = max; // Update second largest
+            max = nums[i];   // Update largest
+            maxIndex = i;    // Update the index of the largest
+        } else if (nums[i] > secondMax) {
+            secondMax = nums[i]; // Update second largest if it's greater than the current second max
+        }
+    }
+
+    // Check if the largest element is at least twice the second largest
+    return max >= 2 * secondMax ? maxIndex : -1;
+}
+
+// Example usage:
+console.log(dominantIndex([3, 6, 1, 0])); // Output: 1
+console.log(dominantIndex([1, 2, 3, 4])); // Output: -1
+console.log(dominantIndex([0, 0, 0, 1])); // Output: 3
