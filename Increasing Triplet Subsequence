@@ -1,0 +1,22 @@
+function increasingTriplet(nums) {
+    let first = Infinity;  // Smallest element so far
+    let second = Infinity; // Second smallest element so far
+
+    for (const num of nums) {
+        if (num <= first) {
+            first = num; // Update smallest element
+        } else if (num <= second) {
+            second = num; // Update second smallest element
+        } else {
+            // If we find a number greater than both first and second, return true
+            return true;
+        }
+    }
+
+    return false; // No such triplet found
+}
+
+// Example usage:
+console.log(increasingTriplet([1, 2, 3, 4, 5])); // Output: true
+console.log(increasingTriplet([5, 4, 3, 2, 1])); // Output: false
+console.log(increasingTriplet([2, 1, 5, 0, 4, 6])); // Output: true
