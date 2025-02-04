@@ -1,0 +1,24 @@
+function findLucky(arr) {
+    const frequency = {};
+
+    // Count the frequency of each number
+    for (const num of arr) {
+        frequency[num] = (frequency[num] || 0) + 1;
+    }
+
+    let largestLucky = -1;
+
+    // Check for lucky integers
+    for (const [num, freq] of Object.entries(frequency)) {
+        if (Number(num) === freq) {
+            largestLucky = Math.max(largestLucky, Number(num));
+        }
+    }
+
+    return largestLucky;
+}
+
+// Example Usage
+console.log(findLucky([2, 2, 3, 4]));      // Output: 2
+console.log(findLucky([1, 2, 2, 3, 3, 3])); // Output: 3
+console.log(findLucky([2, 2, 2, 3, 3]));    // Output: -1
