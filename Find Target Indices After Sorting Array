@@ -1,0 +1,20 @@
+
+var targetIndices = function(nums, target) {
+    // Step 1: Sort the array
+    nums.sort((a, b) => a - b);
+
+    // Step 2: Find indices where nums[i] == target
+    let result = [];
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === target) {
+            result.push(i);
+        }
+    }
+
+    return result;
+};
+
+// Example Usage
+console.log(targetIndices([1, 2, 5, 2, 3], 2)); // Output: [1, 2]
+console.log(targetIndices([1, 2, 5, 2, 3], 3)); // Output: [3]
+console.log(targetIndices([1, 2, 5, 2, 3], 5)); // Output: [4]
