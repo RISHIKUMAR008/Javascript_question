@@ -1,0 +1,19 @@
+
+function largestNumber(nums) {
+    // Custom comparator function
+    nums.sort((a, b) => {
+        const order1 = `${a}${b}`;
+        const order2 = `${b}${a}`;
+        return order2 - order1; // Sort in descending order based on concatenation
+    });
+
+    // Concatenate the sorted numbers
+    const result = nums.join("");
+
+    // Handle the case where the numbers are all zeros
+    return result[0] === "0" ? "0" : result;
+}
+
+// Example usage
+console.log(largestNumber([10, 2])); // Output: "210"
+console.log(largestNumber([3, 30, 34, 5, 9])); // Output: "9534330"
