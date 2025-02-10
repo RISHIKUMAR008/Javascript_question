@@ -1,0 +1,15 @@
+
+function maximumCount(nums) {
+    let posCount = 0, negCount = 0;
+
+    for (const num of nums) {
+        if (num > 0) posCount++; // Count positive numbers
+        else if (num < 0) negCount++; // Count negative numbers
+    }
+
+    return Math.max(posCount, negCount);
+}
+
+// Example usage
+console.log(maximumCount([-2, -1, -1, 1, 2, 3])); // Output: 3
+console.log(maximumCount([-3, -2, -1, 0, 0, 1, 2])); // Output: 3
