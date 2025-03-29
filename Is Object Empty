@@ -1,0 +1,16 @@
+function isEmpty(value) {
+    if (Array.isArray(value)) {
+        return value.length === 0; // Check if array is empty
+    } else if (typeof value === "object" && value !== null) {
+        return Object.keys(value).length === 0; // Check if object has no keys
+    }
+    return false; // If it's neither an object nor an array, return false
+}
+
+// Test cases
+console.log(isEmpty([])); // true
+console.log(isEmpty({})); // true
+console.log(isEmpty([1, 2, 3])); // false
+console.log(isEmpty({ key: "value" })); // false
+console.log(isEmpty(null)); // false
+console.log(isEmpty(42)); // false
