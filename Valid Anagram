@@ -1,0 +1,26 @@
+function isAnagram(s, t) {
+    if (s.length !== t.length) return false;
+
+    let charCount = new Map();
+
+    // Count occurrences of each character in s
+    for (let char of s) {
+        charCount.set(char, (charCount.get(char) || 0) + 1);
+    }
+
+    // Decrease count for each character in t
+    for (let char of t) {
+        if (!charCount.has(char)) return false;
+        charCount.set(char, charCount.get(char) - 1);
+        if (charCount.get(char) === 0) charCount.delete(char);
+    }
+
+    return charCount.size === 0;
+}
+
+// Test cases
+console.log(isAnagram("anagram", "nagaram")); // true
+console.log(isAnagram("rat", "car")); // false
+console.log(isAnagram("listen", "silent")); // true
+console.log(isAnagram("hello", "holle")); // true
+console.log(isAnagram("aacc", "ccac")); // false
