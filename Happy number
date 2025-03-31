@@ -1,0 +1,26 @@
+function isHappy(n) {
+    let seen = new Set();
+
+    while (n !== 1 && !seen.has(n)) {
+        seen.add(n);
+        n = getSumOfSquares(n);
+    }
+
+    return n === 1;
+}
+
+function getSumOfSquares(num) {
+    let sum = 0;
+    while (num > 0) {
+        let digit = num % 10;
+        sum += digit * digit;
+        num = Math.floor(num / 10);
+    }
+    return sum;
+}
+
+// Test cases
+console.log(isHappy(19)); // true
+console.log(isHappy(2));  // false
+console.log(isHappy(7));  // true
+console.log(isHappy(4));  // false
