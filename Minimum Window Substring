@@ -1,0 +1,82 @@
+Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+
+The testcases will be generated such that the answer is unique.
+
+ 
+
+Example 1:
+
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+Example 2:
+
+Input: s = "a", t = "a"
+Output: "a"
+Explanation: The entire string s is the minimum window.
+Example 3:
+
+Input: s = "a", t = "aa"
+Output: ""
+Explanation: Both 'a's from t must be included in the window.
+Since the largest window of s only has one 'a', return empty string.
+
+
+
+
+
+
+
+
+
+
+
+
+
+function minWindow(s, t) {
+    if (s.length < t.length) return "";
+
+    let targetMap = new Map();
+    for (let char of t) {
+        targetMap.set(char, (targetMap.get(char) || 0) + 1);
+    }
+
+    let left = 0, right = 0;
+    let required = targetMap.size, formed = 0;
+    let windowMap = new Map();
+    let minLen = Infinity, startIndex = 0;
+
+    while (right < s.length) {
+        let char = s[right];
+        windowMap.set(char, (windowMap.get(char) || 0) + 1);
+
+        if (targetMap.has(char) && windowMap.get(char) === targetMap.get(char)) {
+            formed++;
+        }
+
+        // Try to shrink the window
+        while (formed === required) {
+            if (right - left + 1 < minLen) {
+                minLen = right - left + 1;
+                startIndex = left;
+            }
+
+            let leftChar = s[left];
+            windowMap.set(leftChar, windowMap.get(leftChar) - 1);
+            if (targetMap.has(leftChar) && windowMap.get(leftChar) < targetMap.get(leftChar)) {
+                formed--;
+            }
+
+            left++;
+        }
+
+        right++;
+    }
+
+    return minLen === Infinity ? "" : s.substring(startIndex, startIndex + minLen);
+}
+
+// Test cases
+console.log(minWindow("ADOBECODEBANC", "ABC")); // Output: "BANC"
+console.log(minWindow("a", "a")); // Output: "a"
+console.log(minWindow("a", "aa")); // Output: ""
