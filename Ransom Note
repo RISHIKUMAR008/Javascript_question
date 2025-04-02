@@ -1,0 +1,50 @@
+Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+
+Each letter in magazine can only be used once in ransomNote.
+
+ 
+
+Example 1:
+
+Input: ransomNote = "a", magazine = "b"
+Output: false
+Example 2:
+
+Input: ransomNote = "aa", magazine = "ab"
+Output: false
+Example 3:
+
+Input: ransomNote = "aa", magazine = "aab"
+Output: true
+
+
+
+
+
+
+
+
+
+function canConstruct(ransomNote, magazine) {
+    let letterCount = {};
+
+    // Count frequency of each character in magazine
+    for (let char of magazine) {
+        letterCount[char] = (letterCount[char] || 0) + 1;
+    }
+
+    // Check if ransomNote can be formed
+    for (let char of ransomNote) {
+        if (!letterCount[char] || letterCount[char] === 0) {
+            return false;
+        }
+        letterCount[char]--; // Use one occurrence of the character
+    }
+
+    return true;
+}
+
+// Test cases
+console.log(canConstruct("a", "b")); // false
+console.log(canConstruct("aa", "ab")); // false
+console.log(canConstruct("aa", "aab")); // true
