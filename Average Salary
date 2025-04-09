@@ -10,3 +10,21 @@ const average = salary => {
     return sum / (salary.length - 2)
    
 };
+
+
+
+
+
+function average(salary) {
+    salary.sort((a, b) => a - b); // Sort in ascending order
+
+    let left = 1;
+    let right = salary.length - 2;
+    let sum = 0;
+
+    for (let i = left; i <= right; i++) {
+        sum += salary[i];
+    }
+
+    return sum / (salary.length - 2);
+}
