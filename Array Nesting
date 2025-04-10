@@ -1,0 +1,32 @@
+Input: nums = [5,4,0,3,1,6,2]
+Output: 4
+Explanation: 
+nums[0] = 5, nums[1] = 4, nums[2] = 0, nums[3] = 3, nums[4] = 1, nums[5] = 6, nums[6] = 2.
+One of the longest sets s[k]:
+s[0] = {nums[0], nums[5], nums[6], nums[2]} = {5, 6, 2, 0}
+
+
+
+
+function arrayNesting(nums) {
+    const visited = new Array(nums.length).fill(false);
+    let maxLen = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        if (!visited[i]) {
+            let count = 0;
+            let current = i;
+
+            // Follow the cycle
+            while (!visited[current]) {
+                visited[current] = true;
+                current = nums[current];
+                count++;
+            }
+
+            maxLen = Math.max(maxLen, count);
+        }
+    }
+
+    return maxLen;
+}
