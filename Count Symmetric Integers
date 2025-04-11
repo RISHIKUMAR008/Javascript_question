@@ -1,0 +1,32 @@
+function countSymmetricIntegers(low, high) {
+    let count = 0;
+
+    for (let i = low; i <= high; i++) {
+        const str = i.toString();
+        const len = str.length;
+
+        // Only consider numbers with even number of digits
+        if (len % 2 !== 0) continue;
+
+        const mid = len / 2;
+        let sum1 = 0, sum2 = 0;
+
+        // Sum the first half
+        for (let j = 0; j < mid; j++) {
+            sum1 += Number(str[j]);
+        }
+
+        // Sum the second half
+        for (let j = mid; j < len; j++) {
+            sum2 += Number(str[j]);
+        }
+
+        if (sum1 === sum2) count++;
+    }
+
+    return count;
+}
+
+// Example usage
+console.log(countSymmetricIntegers(1, 100));      // Output: 9
+console.log(countSymmetricIntegers(1200, 1230));  // Output: 4
