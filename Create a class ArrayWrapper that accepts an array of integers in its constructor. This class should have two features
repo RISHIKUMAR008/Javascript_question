@@ -1,0 +1,15 @@
+class ArrayWrapper {
+  constructor(arr) {
+    this.arr = arr;
+  }
+
+  // When using "+" operator, valueOf is invoked
+  valueOf() {
+    return this.arr.reduce((sum, num) => sum + num, 0);
+  }
+
+  // When using String() or console.log, toString is invoked
+  toString() {
+    return `[${this.arr.join(",")}]`;
+  }
+}
