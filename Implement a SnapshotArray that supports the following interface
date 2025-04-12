@@ -1,0 +1,25 @@
+class SnapshotArray {
+  constructor(length) {
+    this.snapshots = new Array(length).fill(0).map(() => new Map());
+    this.snapId = 0;
+  }
+
+  set(index, val) {
+    this.snapshots[index].set(this.snapId, val);
+  }
+
+  snap() {
+    return this.snapId++;
+  }
+
+  get(index, snap_id) {
+    // Search for the latest value at or before the snap_id
+    while (snap_id >= 0) {
+      if (this.snapshots[index].has(snap_id)) {
+        return this.snapshots[index].get(snap_id);
+      }
+      snap_id--;
+    }
+    return 0;
+  }
+}
