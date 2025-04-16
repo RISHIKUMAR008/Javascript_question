@@ -1,0 +1,28 @@
+function countGood(nums, k) {
+    let count = 0;
+    let freq = new Map();
+    let totalPairs = 0;
+    let left = 0;
+    let result = 0;
+
+    for (let right = 0; right < nums.length; right++) {
+        const num = nums[right];
+        const prevCount = freq.get(num) || 0;
+
+        totalPairs += prevCount;
+        freq.set(num, prevCount + 1);
+
+        // Move left pointer until we have at least k pairs
+        while (totalPairs >= k) {
+            result += nums.length - right; // all subarrays from left to end are valid
+            const leftNum = nums[left];
+            const leftCount = freq.get(leftNum);
+
+            totalPairs -= leftCount - 1;
+            freq.set(leftNum, leftCount - 1);
+            left++;
+        }
+    }
+
+    return result;
+}
