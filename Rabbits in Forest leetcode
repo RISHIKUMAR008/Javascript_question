@@ -1,0 +1,17 @@
+function numRabbits(answers) {
+    const count = new Map();
+    let total = 0;
+
+    // Count frequency of each answer
+    for (const ans of answers) {
+        count.set(ans, (count.get(ans) || 0) + 1);
+    }
+
+    for (const [k, freq] of count.entries()) {
+        const groupSize = k + 1;
+        const groups = Math.ceil(freq / groupSize);
+        total += groups * groupSize;
+    }
+
+    return total;
+}
