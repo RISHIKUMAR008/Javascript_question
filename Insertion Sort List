@@ -1,0 +1,26 @@
+function insertionSortList(head) {
+    if (!head || !head.next) return head;
+
+    const dummy = new ListNode(0); // Dummy node
+    let current = head;
+
+    while (current) {
+        let prev = dummy;
+        // Find where to insert current node in the sorted part
+        while (prev.next && prev.next.val < current.val) {
+            prev = prev.next;
+        }
+
+        // Save next node before changing links
+        const nextTemp = current.next;
+
+        // Insert current between prev and prev.next
+        current.next = prev.next;
+        prev.next = current;
+
+        // Move to the next node
+        current = nextTemp;
+    }
+
+    return dummy.next;
+}
