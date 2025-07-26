@@ -1,0 +1,15 @@
+function countDigits(number) {
+  // Convert the number to a string
+  const numString = String(number); 
+  // Return the length of the string, which represents the digit count
+  return numString.length;
+}
+
+// Example usage:
+const num1 = 12345;
+const num2 = 9876543210;
+const num3 = -500; // For negative numbers, you might want to consider the absolute value
+
+console.log(`Number of digits in ${num1}: ${countDigits(num1)}`); 
+console.log(`Number of digits in ${num2}: ${countDigits(num2)}`);
+console.log(`Number of digits in ${num3}: ${countDigits(Math.abs(num3))}`); // Using Math.abs for negative numbers
