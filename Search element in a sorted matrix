@@ -1,0 +1,23 @@
+function searchMatrix(mat, x) {
+    let n = mat.length;
+    let m = mat[0].length;
+
+    // traverse every element in the matrix
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+            if (mat[i][j] === x)
+                return true;
+        }
+    }
+
+    return false;
+}
+
+// Driver Code
+let mat = [
+    [1, 5, 9],
+    [14, 20, 21],
+    [30, 34, 43]
+];
+let x = 14;
+console.log(searchMatrix(mat, x) ? "true" : "false");
