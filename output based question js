@@ -1,0 +1,246 @@
+console.log(typeof null); → "object"
+
+console.log(typeof undefined); → "undefined"
+
+console.log(null == undefined); → true
+
+console.log(null === undefined); → false
+
+console.log(1 + "2" + 3); → "123"
+
+console.log("1" + 2 + 3); → "123"
+
+console.log(1 + 2 + "3"); → "33"
+
+console.log("5" - 2); → 3
+
+console.log("5" + 2); → "52"
+
+console.log("5" * "2"); → 10
+
+console.log(Number("")); → 0
+
+console.log(Boolean("")); → false
+
+console.log(Boolean("0")); → true
+
+console.log(Boolean(0)); → false
+
+console.log(Boolean([])); → true
+
+console.log(Boolean({})); → true
+
+console.log([1,2] + [3,4]); → "1,23,4"
+
+console.log([] + {}); → "[object Object]"
+
+console.log({} + []); → "[object Object]"
+
+console.log([] == 0); → true
+
+console.log([].toString()); → ""
+
+console.log([1,2].toString()); → "1,2"
+
+console.log([, ,].length); → 2
+
+console.log([, ,].toString()); → ","
+
+console.log([1,,3].map(x=>x)); → [1, empty, 3] (sparse)
+
+console.log([1,2,3].length = 1, [1,2,3].length); → true 3 (comma creates two logs?
+
+27) `console.log([1,2,3].length = 5, [1,2,3].length);` (new literal unaffected—fix)  
+(Replace with safe)  
+27) ```js
+const b = [1,2,3]; b.length = 5; console.log(b.length, b[3]);
+``` → **5 undefined**
+
+28) `console.log(+"");` → **0**  
+29) `console.log(+"  ");` → **0**  
+30) `console.log(+true, +false);` → **1 0**
+
+31) `console.log(parseInt("08"));` → **8**  
+32) `console.log(parseInt("08", 10));` → **8**  
+33) `console.log(parseInt("10px"));` → **10**  
+34) `console.log(Number("10px"));` → **NaN**  
+35) `console.log(isNaN("foo"));` → **true**  
+36) `console.log(Number.isNaN("foo"));` → **false**  
+37) `console.log(Object.is(NaN, NaN));` → **true**  
+38) `console.log(NaN === NaN);` → **false**  
+39) `console.log(0 === -0);` → **true**  
+40) `console.log(Object.is(0, -0));` → **false**
+
+41) `console.log(1 < 2 < 3);` → **true**  
+42) `console.log(3 > 2 > 1);` → **false** (because `(3>2)` is true → 1; `1 > 1` is false)  
+43) `console.log("2" > "12");` → **true** (lexicographic)  
+44) `console.log("2" > 12);` → **false** (numeric comparison)  
+45) `console.log([] == ![]);` → **true**  
+46) `console.log("" == 0);` → **true**  
+47) `console.log("" === 0);` → **false**  
+48) `console.log(false == "0");` → **true**  
+49) `console.log(false === "0");` → **false**  
+50) `console.log(null >= 0);` → **false**
+
+51) ```js
+var x = 1; (function(){ console.log(x); var x = 2; })();
+``` → **undefined**  
+52) ```js
+let y = 1; (function(){ console.log(y); let y = 2; })();
+``` → **ReferenceError** (TDZ)  
+53) ```js
+console.log(a); var a = 5;
+``` → **undefined**  
+54) ```js
+try { console.log(b); let b = 5; } catch(e){ console.log(e instanceof ReferenceError); }
+``` → **true**  
+55) ```js
+function f(){ return; } console.log(f());
+``` → **undefined**  
+56) ```js
+function g(){ return {} } console.log(typeof g());
+``` → **"object"**  
+57) ```js
+(function(){ return typeof arguments; })();
+``` → **"object"**  
+58) ```js
+const obj = {a:1}; obj.b ??= 2; console.log(obj);
+``` → **{ a:1, b:2 }**  
+59) ```js
+const obj2 = {b:0}; obj2.b ||= 5; console.log(obj2.b);
+``` → **5**  
+60) ```js
+const obj3 = {b:0}; obj3.b &&= 5; console.log(obj3.b);
+``` → **0**
+
+61) ```js
+const a = {n:1}; const b = a; b.n = 2; console.log(a.n);
+``` → **2**  
+62) ```js
+const a = {}; const b = {}; console.log(a == b, a === b);
+``` → **false false**  
+63) ```js
+const a = {x:1}; const b = {...a}; console.log(a===b, b.x);
+``` → **false 1**  
+64) ```js
+const a = Object.freeze({x:1}); a.x = 2; console.log(a.x);
+``` → **1**  
+65) ```js
+const a = {x:1}; Object.seal(a); delete a.x; console.log("x" in a);
+``` → **true**
+
+66) ```js
+console.log([1,2,3].map(x=>x*2));
+``` → **[2,4,6]**  
+67) ```js
+console.log([1,2,3].filter(x=>x%2));
+``` → **[1,3]**  
+68) ```js
+console.log([1,2,3].reduce((a,c)=>a+c,0));
+``` → **6**  
+69) ```js
+console.log([1,2,3].find(x=>x>1));
+``` → **2**  
+70) ```js
+console.log([1,2,3].findIndex(x=>x>1));
+``` → **1**
+
+71) ```js
+const s = "hello"; console.log(s[1], s.charAt(1));
+``` → **"e" "e"**  
+72) ```js
+console.log("hello".toUpperCase());
+``` → **"HELLO"**  
+73) ```js
+console.log("  a b  ".trim().length);
+``` → **3**  
+74) ```js
+console.log("a-b-c".split("-").join("_"));
+``` → **"a_b_c"**  
+75) ```js
+console.log("abc".includes("b"), "abc".indexOf("b"));
+``` → **true 1**
+
+76) ```js
+console.log([...new Set([1,2,2,3])]);
+``` → **[1,2,3]**  
+77) ```js
+const m = new Map([[1,"a"],[2,"b"]]); console.log(m.get(2));
+``` → **"b"**  
+78) ```js
+const s = new Set("aba"); console.log(s.size);
+``` → **2**  
+79) ```js
+const m = new Map(); m.set(NaN, "x"); console.log(m.get(NaN));
+``` → **"x"**  
+80) ```js
+const s = new Set([0,-0]); console.log(s.size);
+``` → **1**
+
+81) ```js
+console.log(typeof function(){});
+``` → **"function"**  
+82) ```js
+console.log((function(){ return this; })() === globalThis);
+``` → **true** (non-strict)  
+83) ```js
+'use strict'; console.log((function(){ return this; })());
+``` → **undefined**  
+84) ```js
+const o = {x:10, get v(){ return this.x+1; }}; console.log(o.v);
+``` → **11**  
+85) ```js
+const o = {x:10, set v(n){ this.x=n; }}; o.v=5; console.log(o.x);
+``` → **5**
+
+86) ```js
+const [a,b] = [1,2]; console.log(a,b);
+``` → **1 2**  
+87) ```js
+const {x:y} = {x:3}; console.log(y);
+``` → **3**  
+88) ```js
+const {a=1} = {}; console.log(a);
+``` → **1**  
+89) ```js
+const [a=1] = []; console.log(a);
+``` → **1**  
+90) ```js
+const {a, ...rest} = {a:1,b:2,c:3}; console.log(rest);
+``` → **{ b:2, c:3 }**
+
+91) ```js
+console.log([..."💙"].length);
+``` → **2** (surrogate pairs)  
+92) ```js
+console.log(Array.from("💙").length);
+``` → **1**  
+93) ```js
+console.log("𝟘".length);
+``` → **2**  
+94) ```js
+console.log([...new Intl.Segmenter('en',{granularity:'grapheme'}).segment("💙")].length);
+``` → **1**  
+95) ```js
+console.log("\n".trim().length);
+``` → **0**
+
+96) ```js
+console.log(Math.max(...[1,5,3]));
+``` → **5**  
+97) ```js
+console.log(Math.min() > Math.max());
+``` → **true** (`Math.min()` → Infinity, `Math.max()` → -Infinity)  
+98) ```js
+console.log((0.1 + 0.2) === 0.3);
+``` → **false**  
+99) ```js
+console.log(0.1 + 0.2);
+``` → **0.30000000000000004**  
+100) ```js
+console.log((1_000_000).toString().includes("_"));
+``` → **false**
+
+---
+
+Want me to **expand this to 200** and package it as a clean **PDF/CSV** (with code + expected output), or tailor questions to specific topics (coercion, arrays, regex, classes, prototypes, async/microtasks, DOM, TypeScript quirks)? Say the word and I’ll drop the download right here.
