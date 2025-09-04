@@ -1,0 +1,48 @@
+const cities = [
+  { city: "New York", state: "New York" },
+  { city: "Los Angeles", state: "California" },
+  { city: "Chicago", state: "Illinois" },
+  { city: "Houston", state: "Texas" },
+  { city: "Phoenix", state: "Arizona" },
+  { city: "Philadelphia", state: "Pennsylvania" },
+  { city: "San Antonio", state: "Texas" },
+  { city: "San Diego", state: "California" },
+  { city: "Dallas", state: "Texas" },
+  { city: "San Jose", state: "California" }
+];
+
+
+
+import React from "react";
+
+const App = () => {
+  const cities = [
+    { city: "New York", state: "New York" },
+    { city: "Los Angeles", state: "California" },
+    { city: "Chicago", state: "Illinois" },
+    { city: "Houston", state: "Texas" },
+    { city: "Phoenix", state: "Arizona" },
+    { city: "Philadelphia", state: "Pennsylvania" },
+    { city: "San Antonio", state: "Texas" },
+    { city: "San Diego", state: "California" },
+    { city: "Dallas", state: "Texas" },
+    { city: "San Jose", state: "California" }
+  ];
+
+  // Convert array → single object
+  const cityObject = cities.reduce((acc, item) => {
+    acc[item.city] = item.state; // key = city, value = state
+    return acc;
+  }, {});
+
+  console.log(cityObject);
+
+  return (
+    <div>
+      <h1>Single Object Output</h1>
+      <pre>{JSON.stringify(cityObject, null, 2)}</pre>
+    </div>
+  );
+};
+
+export default App;
