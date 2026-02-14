@@ -1,0 +1,57 @@
+class myQueue {
+    constructor() {
+        this.s1 = [];
+        this.s2 = [];
+    }
+
+    // Enqueue operation (costly)
+    enqueue(x) {
+        
+        // Move all elements from s1 to s2
+        while (this.s1.length > 0) {
+            this.s2.push(this.s1.pop());
+        }
+
+        // Push the new item into s1
+        this.s1.push(x);
+
+        // Move everything back to s1
+        while (this.s2.length > 0) {
+            this.s1.push(this.s2.pop());
+        }
+    }
+
+    // Dequeue operation
+    dequeue() {
+        if (this.s1.length === 0) {
+            return; 
+        }
+        this.s1.pop();
+    }
+
+    // Front operation
+    front() {
+        if (this.s1.length === 0) {
+            return -1;
+        }
+        return this.s1[this.s1.length - 1];
+    }
+
+    // Size operation
+    size() {
+        return this.s1.length;
+    }
+}
+
+// Driver code
+const q = new myQueue();
+q.enqueue(1);
+q.enqueue(2);
+q.enqueue(3);
+
+console.log("Front:", q.front()); 
+console.log("Size:", q.size());  
+
+q.dequeue();        
+console.log("Front:", q.front()); 
+console.log("Size:", q.size());
