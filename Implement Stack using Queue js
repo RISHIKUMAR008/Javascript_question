@@ -1,0 +1,37 @@
+class Stack {
+  constructor() {
+    this.queue = [];
+  }
+
+  push(x) {
+    this.queue.push(x);
+    
+    // Rotate the queue
+    for (let i = 0; i < this.queue.length - 1; i++) {
+      this.queue.push(this.queue.shift());
+    }
+  }
+
+  pop() {
+    if (this.isEmpty()) return null;
+    return this.queue.shift();
+  }
+
+  top() {
+    if (this.isEmpty()) return null;
+    return this.queue[0];
+  }
+
+  isEmpty() {
+    return this.queue.length === 0;
+  }
+}
+
+// Usage
+const stack = new Stack();
+stack.push(1);
+stack.push(2);
+stack.push(3);
+
+console.log(stack.pop()); // 3
+console.log(stack.top()); // 2
