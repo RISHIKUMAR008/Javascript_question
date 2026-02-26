@@ -1,0 +1,10 @@
+const users = [
+  { id: 1, name: "Rishi" },
+  { id: 2, name: "Amit" },
+  { id: 3, name: "Neha" }
+];
+
+const userNames = users.map(user => user.name);
+
+console.log(userNames);
+// ["Rishi", "Amit", "Neha"]
