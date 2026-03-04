@@ -1,0 +1,55 @@
+class Solution {
+
+    // Function to find all combinations of numbers that sum up to the target
+    findCombination(ind, target, arr, ans, ds) {
+        // Base case: If the target becomes 0, we found a valid combination
+        if (target === 0) {
+            ans.push([...ds]);  // Add the current combination to the result
+            return;
+        }
+
+        // Loop through the elements starting from index 'ind'
+        for (let i = ind; i < arr.length; i++) {
+            // Skip duplicates to avoid repeating combinations
+            if (i > ind && arr[i] === arr[i - 1]) continue;
+
+            // If the current element is greater than the remaining target, break the loop
+            if (arr[i] > target) break;
+
+            // Include the current element in the combination
+            ds.push(arr[i]);
+
+            // Recur with the updated target and next index (i + 1 to avoid repetition)
+            this.findCombination(i + 1, target - arr[i], arr, ans, ds);
+
+            // Backtrack by removing the last added element
+            ds.pop();
+        }
+    }
+
+    // Function to calculate all unique combinations that sum up to the target
+    combinationSum2(candidates, target) {
+        candidates.sort();  // Sort the candidates to handle duplicates
+        const ans = [];  // To store the result
+        const ds = [];  // To store a current combination
+        this.findCombination(0, target, candidates, ans, ds);  // Start the recursive search
+        return ans;  // Return all valid combinations
+    }
+}
+
+// Driver code
+const obj = new Solution();
+const v = [10, 1, 2, 7, 6, 1, 5];  // Example input
+const target = 8;  // Target sum
+
+// Get all combinations that sum up to 8
+const comb = obj.combinationSum2(v, target);
+
+// Output the combinations
+console.log("[", end=" ");
+comb.forEach(combination => {
+    process.stdout.write("[ ");
+    console.log(combination.join(" "), end=" ");
+    console.log("]", end=" ");
+});
+console.log("]");
