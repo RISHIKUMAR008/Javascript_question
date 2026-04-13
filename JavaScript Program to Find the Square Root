@@ -1,0 +1,18 @@
+const num1 = 25;
+const num2 = -120;
+const num3 = 'Geeks';
+
+// Math.sqrt() function returns the
+// square root of number
+console.log('Square Root of ' + 
+    num1 + ' is ' + Math.sqrt(num1));
+  
+// Math.sqrt() function returns NaN, because
+// the passed value is negative integer
+console.log('Square Root of ' + 
+    num2 + ' is ' + Math.sqrt(num2));
+    
+// Math.sqrt() function returns NaN, because
+// the passed value is string
+console.log('Square Root of ' + 
+    num3 + ' is ' + Math.sqrt(num3));
