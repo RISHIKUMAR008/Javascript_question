@@ -1,0 +1,58 @@
+class FirstAndLastPosition {
+    // Binary search to find the first occurrence of k
+    firstOccurrence(arr, k) {
+        let low = 0, high = arr.length - 1;
+        let first = -1;
+
+        while (low <= high) {
+            let mid = Math.floor((low + high) / 2);
+
+            if (arr[mid] === k) {
+                first = mid;
+                high = mid - 1; // keep searching left
+            } else if (arr[mid] < k) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return first;
+    }
+
+    // Binary search to find the last occurrence of k
+    lastOccurrence(arr, k) {
+        let low = 0, high = arr.length - 1;
+        let last = -1;
+
+        while (low <= high) {
+            let mid = Math.floor((low + high) / 2);
+
+            if (arr[mid] === k) {
+                last = mid;
+                low = mid + 1; // keep searching right
+            } else if (arr[mid] < k) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return last;
+    }
+
+    // Main function to return first and last occurrence
+    findFirstAndLast(arr, k) {
+        const first = this.firstOccurrence(arr, k);
+        if (first === -1) return [-1, -1];
+
+        const last = this.lastOccurrence(arr, k);
+        return [first, last];
+    }
+}
+
+// Driver code
+const solution = new FirstAndLastPosition();
+const arr = [2, 4, 6, 8, 8, 8, 11, 13];
+const k = 8;
+
+const ans = solution.findFirstAndLast(arr, k);
+console.log(`The first and last positions are: ${ans[0]} ${ans[1]}`);
