@@ -1,0 +1,15 @@
+function search(arr, key) {
+    for (let i = 0; i < arr.length; i++) {
+        // Check each element one by one
+        if (arr[i] === key)
+            return i;
+    }
+    // Key not found
+    return -1;
+}
+
+const arr = [5, 6, 7, 8, 9, 10, 1, 2, 3];
+const key = 3;
+
+const index = search(arr, key);
+console.log(index);
