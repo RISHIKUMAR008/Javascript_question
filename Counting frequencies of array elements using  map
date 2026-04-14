@@ -1,0 +1,27 @@
+function countFreq(arr) {
+    // stores frequency of each number
+    const mp = {};
+    // stores [number, frequency]
+    const ans = [];
+
+    // count frequency using object
+    for (let num of arr) {
+        mp[num] = (mp[num] || 0) + 1;
+    }
+
+    // Build the answer array from the frequency map
+    for (let num in mp) {
+        ans.push([parseInt(num), mp[num]]);
+    }
+
+    return ans;
+}
+
+// Driver Code
+const arr = [10, 20, 10, 5, 20];
+let ans = countFreq(arr);
+// sort the result in ascending order of the number
+ans.sort((a, b) => a[0] - b[0]);
+for (let x of ans) {
+    console.log(x[0], x[1]);
+}
