@@ -1,0 +1,7 @@
+let arr = [
+    { name: 'Arrays', topic: 'Data Structures' },
+    { name: 'Recursion', topic: 'Algorithms' },
+    { name: 'JavaScript', topic: 'Programming' }
+];
+arr.sort((a, b) => a.name.localeCompare(b.name));
+console.log(arr);
