@@ -1,0 +1,31 @@
+var removeNthFromEnd = function(head, n) {
+    
+    if (head === null) return head;
+
+    let k = 0;
+    let curr = head;
+
+    // Find length
+    while (curr !== null) {
+        curr = curr.next;
+        k++;
+    }
+
+    if (n > k) return head;
+
+    // Remove head
+    if (k - n === 0) {
+        return head.next;
+    }
+
+    curr = head;
+
+    // Move to node before target
+    for (let i = 1; i < k - n; i++) {
+        curr = curr.next;
+    }
+
+    curr.next = curr.next.next;
+
+    return head;
+};
