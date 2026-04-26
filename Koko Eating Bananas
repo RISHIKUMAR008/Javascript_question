@@ -1,0 +1,53 @@
+Given an array arr[] where each element denotes the number of bananas in a pile, and an integer k representing the total number of hours available. In one hour, up to x bananas can be eaten from a single pile. If a pile contains fewer than x bananas, the entire pile is consumed in one hour. It is guaranteed that the number of piles is less than or equal to k.
+Determine the minimum value of x such that all piles can be completed within k hours.
+
+Examples:
+
+Input: arr[] = [5, 10, 3], k = 4
+Output: 5
+Explanation: If Koko eats at the rate of 5 bananas per hour.
+                  => First pile of 5 bananas will be finished in 1 hour.
+                  => Second pile of 10 bananas will be finished in 2 hours.
+                  => Third pile of 3 bananas will be finished in 1 hours.
+Therefore, Koko can finish all piles of bananas in 1 + 2 + 1 = 4 hours.
+
+Input: arr[] = [5, 10, 15, 20], k = 7
+Output: 10
+Explanation: If Koko eats at the rate of 10 bananas per hour, it will take 6 hours to finish all the piles.
+
+
+
+
+
+
+
+
+function kokoEat(arr, k) {
+    let mx = Math.max(...arr);
+  
+    for (let speed = 1; speed <= mx; speed++) {
+      
+        let reqTime = 0;
+        for (let i = 0; i < arr.length; i++) {
+          
+            // time required to eat this pile 
+            // of bananas at current speed
+            reqTime += 
+                Math.floor((arr[i] + speed - 1) / speed);
+            
+        }
+      
+        // if total eating time at current speed
+        // is smaller than given time
+        if (reqTime <= k) {
+            return speed;
+        }
+    }
+  
+    return mx;
+}
+
+// Driver Code
+let arr = [5, 10, 3];
+let k = 4;
+console.log(kokoEat(arr, k));
