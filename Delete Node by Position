@@ -1,0 +1,49 @@
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+function deleteNode(head, position) {
+    let temp = head;
+
+    // Head is to be deleted
+    if (position === 1) {
+        head = temp.next;
+        return head;
+    }
+
+    // Traverse to the node before the one to be deleted
+    let prev = null;
+    for (let i = 1; i < position; i++) {
+        prev = temp;
+        temp = temp.next;
+    }
+
+    // Delete the node at the position
+    prev.next = temp.next;
+
+    return head;
+}
+
+function printList(head) {
+    let curr = head;
+    while (curr !== null) {
+        process.stdout.write(curr.data + " -> ");
+        curr = curr.next;
+    }
+    console.log("nullptr");
+}
+
+// Driver Code
+
+let head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+head.next.next.next = new Node(4);
+
+let position = 3;
+head = deleteNode(head, position);
+
+printList(head);
