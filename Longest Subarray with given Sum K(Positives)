@@ -1,0 +1,35 @@
+
+class Solution {
+    longestSubarray(nums, k) {
+        const n = nums.length;
+        let maxLength = 0;
+
+        // starting index
+        for (let startIndex = 0; startIndex < n; startIndex++) {
+            // ending index
+            for (let endIndex = startIndex; endIndex < n; endIndex++) {
+                /* add all the elements of 
+                   subarray = nums[startIndex...endIndex] */
+                let currentSum = 0;
+                for (let i = startIndex; i <= endIndex; i++) {
+                    currentSum += nums[i];
+                }
+
+                if (currentSum === k) {
+                    maxLength = Math.max(maxLength, endIndex - startIndex + 1);
+                }
+            }
+        }
+        return maxLength;
+    }
+}
+
+const nums = [-1, 1, 1];
+const k = 1;
+
+// Create an instance of the Solution class
+const solution = new Solution();
+// Function call to get the result
+const length = solution.longestSubarray(nums, k);
+
+console.log("The length of the longest subarray is:", length);
