@@ -1,0 +1,21 @@
+// JavaScript program for Pascal’s Triangle
+// in O(n^2) time and O(1) extra space
+
+function printPascal(n) {
+    for (let row = 1; row <= n; row++) {
+      
+        // nC0 = 1
+        let c = 1;
+        let line = "";
+        for (let i = 1; i <= row; i++) {
+
+            // The first value in a row is always 1
+            line += c + " ";
+            c = Math.floor(c * (row - i) / i);
+        }
+        console.log(line);
+    }
+}
+
+const n = 5;
+printPascal(n);
