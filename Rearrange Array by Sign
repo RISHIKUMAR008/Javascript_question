@@ -1,0 +1,42 @@
+// JavaScript program to rearrange positive and negative numbers 
+// alternately using Two pointers 
+
+// Function to rearrange positive and negative numbers
+// in alternate fashion
+function rearrange(arr) {
+    let pos = [];
+    let neg = [];
+
+    // Separate positive and negative numbers
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= 0)
+            pos.push(arr[i]);
+        else
+            neg.push(arr[i]);
+    }
+
+    let posIdx = 0, negIdx = 0;
+    let i = 0;
+
+    // Place positive and negative numbers alternately
+    // in the original array
+    while (posIdx < pos.length && negIdx < neg.length) {
+        if (i % 2 === 0)
+            arr[i++] = pos[posIdx++];
+        else 
+            arr[i++] = neg[negIdx++];
+    }
+
+    // Append remaining positive numbers (if any)
+    while (posIdx < pos.length)
+        arr[i++] = pos[posIdx++];
+
+    // Append remaining negative numbers (if any)
+    while (negIdx < neg.length)
+        arr[i++] = neg[negIdx++];
+}
+
+// Driver Code
+let arr = [1, 2, 3, -4, -1, 4];
+rearrange(arr);
+console.log(arr.join(' '));
