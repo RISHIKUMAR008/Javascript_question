@@ -1,0 +1,25 @@
+function firstRepChar(s) {
+    // Get the size of the input string
+    let n = s.length;
+
+    // Iterate through each character in the string
+    for (let i = 0; i < n; i++) {
+    
+        // Check if the current character
+        // is a repeating character
+        for (let j = 0; j < i; j++) {
+            if (s[i] === s[j]) {
+            
+                // Return the repeating character
+                return s[i];
+            }
+        }
+    }
+
+    // If no repeating character is found, return "-1"
+    return "-1";
+}
+
+// Example usage:
+let s = "geeksforgeeks";
+console.log(firstRepChar(s));
