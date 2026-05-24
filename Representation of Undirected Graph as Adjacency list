@@ -1,0 +1,35 @@
+function createGraph(V, edges) {
+    let adj = Array.from({ length: V }, () => []);
+
+    // Add each edge to the adjacency list
+    for (let it of edges) {
+        let u = it[0];
+        let v = it[1];
+        adj[u].push(v);
+        
+         // since the graph is undirected
+        adj[v].push(u); 
+    }
+    return adj;
+}
+//Driver Code
+    let V = 3;
+
+    // List of edges (u, v)
+    let edges = [ [0, 1], [0, 2], [1, 2] ];
+
+    // Build the graph using edges
+    let adj = createGraph(V, edges);
+
+    console.log("Adjacency List Representation:");
+    for (let i = 0; i < V; i++) {
+        
+        // Print the vertex
+        let row = i + ": "; 
+        for (let j of adj[i]) {
+            
+            // Print its adjacent
+            row += j + " "; 
+        }
+        console.log(row.trim()); 
+    }
