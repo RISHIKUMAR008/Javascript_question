@@ -1,0 +1,28 @@
+function cntSubarrays(arr, k) {
+    
+    // for maintaining the count of
+    // subarrays whose sum equal to k
+    let count = 0;
+    let n = arr.length;
+
+    for (let i = 0; i < n; i++) {
+        let currSum = 0;
+
+        // subarray from i to each j -> arr[i....j]
+        for (let j = i; j < n; j++) {
+            currSum += arr[j];
+
+            // increment count if the currSum equals k
+            if (currSum === k) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
+// Driver Code
+let arr = [10, 2, -2, -20, 10];
+let k = -10;
+console.log(cntSubarrays(arr, k));
