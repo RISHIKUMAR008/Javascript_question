@@ -1,0 +1,22 @@
+function upperBound(arr, target) {
+    let lo = 0, hi = arr.length - 1;
+    let res = arr.length;
+
+    while (lo <= hi) {
+        let mid = lo + Math.floor((hi - lo) / 2);
+        if (arr[mid] > target) {
+            res = mid;
+            hi = mid - 1;
+        }
+        else {
+            lo = mid + 1;
+        }
+    }
+    return res;
+}
+
+// Driver Code
+let arr = [2, 3, 7, 10, 11, 11, 25];
+let target = 11;
+
+console.log(upperBound(arr, target));
