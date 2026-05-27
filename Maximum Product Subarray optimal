@@ -1,0 +1,31 @@
+function maxProduct(arr) {
+
+    let n = arr.length;
+    let maxProd = 0;
+
+    // leftToRight to store product from left to Right
+    let leftToRight = 1;
+
+    // rightToLeft to store product from right to left
+    let rightToLeft = 1;
+
+    for (let i = 0; i < n; i++) {
+        if (leftToRight === 0)
+            leftToRight = 1;
+        if (rightToLeft === 0)
+            rightToLeft = 1;
+
+        // calculate product from index left to right
+        leftToRight *= arr[i];
+
+        // calculate product from index right to left
+        let j = n - i - 1;
+        rightToLeft *= arr[j];
+        maxProd = Math.max(leftToRight, rightToLeft, maxProd);
+    }
+    return maxProd;
+}
+
+// Driver Code
+let arr = [ -2, 6, -3, -10, 0, 2 ];
+console.log(maxProduct(arr));
