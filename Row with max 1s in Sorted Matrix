@@ -1,0 +1,43 @@
+// Function to find the index of the row containing the maximum number of 1s.
+function rowWithMax1s(mat) {
+    
+    let rowIndex = -1;
+    let maxCount = 0;
+    
+    let m = mat.length;
+    let n = mat[0].length;
+
+    // Iterate through each row of the matrix
+    for (let i = 0; i < m; i++) {
+        
+        let count = 0;
+        
+        // Iterate through each column in the current row
+        for (let j = 0; j < n; j++) {
+            
+            // If a 1 is found, increment the count for this specific row
+            if (mat[i][j] === 1) {
+                count++;
+            }
+        }
+        
+        // If the current row has more 1s than our previously recorded maximum,
+        // update the maximum count and store the current row index
+        if (count > maxCount) {
+            maxCount = count;
+            rowIndex = i;
+        }
+    }
+
+    return rowIndex;
+}
+
+// Driver code 
+let mat = [
+    [0, 1, 1, 1],
+    [0, 0, 1, 1],
+    [1, 1, 1, 1],
+    [0, 0, 0, 0]
+];
+
+console.log(rowWithMax1s(mat));
