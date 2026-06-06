@@ -1,0 +1,34 @@
+function reverseWords(s) {
+    let stack = [];
+    let word = "";
+
+    // Iterate through the string
+    for (let i = 0; i < s.length; i++) {
+
+        // If not a dot, 
+        // build the current word
+        if (s[i] != '.') {
+            word += s[i];
+        }
+
+        // If we see a dot, 
+        // push the word into the stack
+        else if (word.length > 0) {
+            stack.push(word);
+            word = "";
+        }
+    }
+
+    // Last word remaining, 
+    // push it to stack
+    if (word.length > 0) {
+        stack.push(word);
+    }
+
+    // Rebuild the string from the stack
+    return stack.reverse().join('.');
+}
+
+// Driver Code
+let s = "..geeks..for.geeks.";
+console.log(reverseWords(s));
