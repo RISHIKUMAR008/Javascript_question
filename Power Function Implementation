@@ -1,0 +1,23 @@
+function power(b, e)
+{
+
+    // Initialize result to 1
+    let pow = 1;
+
+    // Multiply b for e times
+    for (let i = 0; i < Math.abs(e); i++)
+        pow = pow * b;
+
+    if (e < 0)
+        return 1 / pow;
+
+    return pow;
+}
+
+// Driver Code
+const b = 3.0;
+const e = 5;
+const res = power(b, e);
+console.log(res);
+
+
