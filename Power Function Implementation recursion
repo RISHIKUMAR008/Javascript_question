@@ -1,0 +1,18 @@
+function power(b, e) {
+    
+    // Base Case: pow(b, 0) = 1
+    if (e == 0)
+        return 1;
+    
+    if (e < 0)
+        return 1 / power(b, -e);
+    
+    // For all other cases
+    return b * power(b, e - 1);
+}
+
+// Driver Code
+const b = 3.0;
+const e = 5;
+const res = power(b, e);
+console.log(res);
