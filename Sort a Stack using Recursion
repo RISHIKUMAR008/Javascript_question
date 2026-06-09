@@ -1,0 +1,44 @@
+function sortedInsert(st, x) {
+
+    // If stack is empty or 
+    // top element is smaller, push x
+    if (st.length === 0 || st[st.length - 1] <= x) {
+        st.push(x);
+        return;
+    }
+
+    let top = st.pop();
+
+    // Recursively insert x in sorted order
+    sortedInsert(st, x);
+
+    st.push(top);
+}
+
+function sortStack(st) {
+    if (st.length === 0) return;
+
+    let top = st.pop();
+
+    // Recursively sort the remaining stack
+    sortStack(st);
+
+    sortedInsert(st, top);
+}
+
+// Driver Code
+let st = [];
+st.push(41);
+st.push(3);
+st.push(32);
+st.push(2);
+st.push(11);
+
+sortStack(st);
+
+let res = [];
+while (st.length > 0) {
+    res.push(st.pop());
+}
+
+console.log(res.join(" "));
