@@ -1,0 +1,96 @@
+// Javascript program to modify a singly linked list
+// By Reversing the 2nd Half Twice 
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+// Function to reverse a linked list iteratively
+function reverse(head) {
+ 
+    let prev = null;
+    let curr = head;
+    let next = null;
+
+    // Traverse and reverse the linked list
+    while (curr !== null) {
+        next = curr.next;
+
+        // Reverse the current node's pointer
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    return prev;
+}
+
+// Function to modify the linked list
+function modifyTheList(head) {
+    
+    // Returning if list has only one node
+    if (head.next === null) { return head; }
+
+    let slow = head;
+    let fast = head;
+
+    // Finding the middle node of the linked list
+    while (fast.next !== null && fast.next.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    let mid = slow;
+
+    // Storing the second half of the list starting
+    // after the middle node
+    let reversedList = mid.next;
+
+    // Splitting the list into two halves
+    mid.next = null;
+
+    // Reversing the second half of the list
+    reversedList = reverse(reversedList);
+
+    let curr1 = head;
+    let curr2 = reversedList;
+
+    // Iterating over both halves of the list 
+    // and modifying the values
+    while (curr2 !== null) {
+        let x = curr1.data;
+        curr1.data = curr2.data - x;
+        curr2.data = x;
+        curr1 = curr1.next;
+        curr2 = curr2.next;
+    }
+
+    // Reversing the second half of the list 
+    // again and connecting both halves
+    mid.next = reverse(reversedList);
+
+    return head;
+}
+
+// Function to print the linked list
+function printList(node) {
+    let curr = node;
+    while (curr !== null) {
+        console.log(curr.data + " ");
+        curr = curr.next;
+    }
+    console.log();
+}
+
+// Create a hard-coded linked list
+// 10 -> 4 -> 5 -> 3 -> 6
+let head = new Node(10);
+head.next = new Node(4);
+head.next.next = new Node(5);
+head.next.next.next = new Node(3);
+head.next.next.next.next = new Node(6);
+
+head = modifyTheList(head);
+
+printList(head);
