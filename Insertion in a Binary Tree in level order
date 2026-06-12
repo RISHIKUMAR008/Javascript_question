@@ -1,0 +1,81 @@
+// JavaScript program to insert element 
+// (in level order) in Binary Tree
+
+class Node {
+    constructor(x) {
+        this.data = x;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+// Function to insert element in binary tree
+function InsertNode(root, data) {
+
+    // If the tree is empty, assign new
+    // node address to root
+    if (root == null) {
+        root = new Node(data);
+        return root;
+    }
+
+    // Else, do level order traversal until we find an empty
+    // place, i.e. either left child or right child of some
+    // node is pointing to NULL.
+    let q = [];
+    q.push(root);
+
+    while (q.length > 0) {
+    
+        let curr = q.shift();
+
+        // First check left if left is null 
+        // insert node in left otherwise check for right
+        if (curr.left !== null)
+            q.push(curr.left);
+        else {
+            curr.left = new Node(data);
+            return root;
+        }
+
+        if (curr.right !== null)
+            q.push(curr.right);
+        else {
+            curr.right = new Node(data);
+            return root;
+        }
+    }
+}
+
+// Inorder traversal of a binary tree
+function inorder(curr) {
+    if (curr == null) return;
+    inorder(curr.left);
+    process.stdout.write(curr.data + ' ');
+    inorder(curr.right);
+}
+
+// Constructing the binary tree
+//          10
+//        /    \ 
+//       11     9
+//      /      / \
+//     7      15   8
+let root = new Node(10);
+root.left = new Node(11);
+root.right = new Node(9);
+root.left.left = new Node(7);
+root.right.left = new Node(15);
+root.right.right = new Node(8);
+
+let key = 12;
+root = InsertNode(root, key);
+
+// After insertion 12 in binary tree
+//          10
+//        /    \ 
+//       11     9
+//      /  \   / \
+//     7   12 15  8
+
+inorder(root);
