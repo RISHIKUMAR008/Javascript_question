@@ -1,0 +1,45 @@
+// Node structure
+class Node {
+    constructor(item) {
+        this.data = item;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+function search(root, key) {
+    let present = false;
+
+    // iterative traversal
+    while (root !== null) {
+        if (root.data === key) {
+            present = true;
+            break;
+        } else if (key > root.data)
+            root = root.right;
+        else
+            root = root.left;
+    }
+
+    return present;
+}
+
+// Driver code
+
+// Creating BST
+//    6
+//   / \
+//  2   8
+//     / \
+//    7   9
+
+const root = new Node(6);
+root.left = new Node(2);
+root.right = new Node(8);
+root.right.left = new Node(7);
+root.right.right = new Node(9);
+
+const key = 7;
+
+// Searching for key in the BST
+console.log(search(root, key));
