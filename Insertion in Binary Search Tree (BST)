@@ -1,0 +1,88 @@
+//Driver Code Starts
+const Denque = require("denque");
+
+// Node structure
+class Node {
+    constructor(val) {
+        this.data = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+function getHeight(root, h) {
+    if (root === null) return h - 1;
+    return Math.max(getHeight(root.left, h + 1), getHeight(root.right, h + 1));
+}
+
+function levelOrder(root) {
+    const queue = new Denque();
+    queue.push([root, 0]);
+
+    let lastLevel = 0;
+    const height = getHeight(root, 0);
+
+    while (!queue.isEmpty()) {
+        const [node, lvl] = queue.shift();
+
+        if (lvl > lastLevel) {
+            console.log();
+            lastLevel = lvl;
+        }
+
+        // all levels are printed
+        if (lvl > height) break;
+
+        // printing null node
+        process.stdout.write((node.data === -1 ? "N" : node.data) + " ");
+
+        // null node has no children
+        if (node.data === -1) continue;
+
+        if (node.left === null) queue.push([new Node(-1), lvl + 1]);
+        else queue.push([node.left, lvl + 1]);
+
+        if (node.right === null) queue.push([new Node(-1), lvl + 1]);
+        else queue.push([node.right, lvl + 1]);
+    }
+}
+//Driver Code Ends
+
+function insert(root, key) {
+   
+    // If the tree is empty, return a new node
+    if (root === null) return new Node(key);
+
+    // Otherwise, recur down the tree
+    if (key < root.data)
+        root.left = insert(root.left, key);
+    else
+        root.right = insert(root.right, key);
+
+    // Return the (unchanged) node pointer
+    return root;
+}
+//Driver Code Starts
+
+// Create BST
+//       22
+//      /  \
+//     12   30
+//     / \   
+//    8  20
+//       / \
+//      15  30
+
+let root = null;
+root = insert(root, 22);
+root = insert(root, 12);
+root = insert(root, 30);
+root = insert(root, 8);
+root = insert(root, 20);
+root = insert(root, 30);
+root = insert(root, 15);
+
+// print the level order 
+// traversal of the BST
+levelOrder(root);
+//Driver Code Ends
