@@ -1,0 +1,30 @@
+function createGraph(V, edges) {
+    let mat = Array.from({ length: V }, () => Array(V).fill(0));
+
+    // Add each edge to the adjacency matrix
+    for (let it of edges) {
+        let u = it[0];
+        let v = it[1];
+        mat[u][v] = 1;
+        
+         // since the graph is undirected
+        mat[v][u] = 1; 
+    }
+    return mat;
+}
+//Driver Code
+    let V = 3;
+
+    // List of edges (u, v)
+    let edges = [[0, 1],[0, 2],[1, 2]];
+
+    // Build the graph using edges
+    let mat = createGraph(V, edges);
+
+    console.log("Adjacency Matrix Representation:");
+    for (let i = 0; i < V; i++) {
+        let row = "";
+        for (let j = 0; j < V; j++)
+            row += mat[i][j] + " ";
+        console.log(row.trim());
+    }
