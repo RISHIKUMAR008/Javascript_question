@@ -1,0 +1,59 @@
+class Node {
+    constructor(x) {
+        this.val = x;
+        this.next = null;
+    }
+}
+
+function insertPos(head, pos, val) {
+
+    if (pos < 1) return head;
+
+    // head will change if pos = 1
+    if (pos === 1) {
+        let newNode = new Node(val);
+        newNode.next = head;
+        return newNode;
+    }
+
+    let curr = head;
+
+    // Traverse to the node just before the new node
+    for (let i = 1; i < pos - 1 && curr !== null; i++) {
+        curr = curr.next;
+    }
+
+    // If position is greater than number of nodes
+    if (curr === null) return head;
+
+    let newNode = new Node(val);
+
+    // update the next pointers
+    newNode.next = curr.next;
+    curr.next = newNode;
+
+    return head;
+}
+
+function printList(head) {
+    let curr = head;
+    while (curr !== null) {
+        process.stdout.write(curr.val.toString());
+        if (curr.next !== null) {
+            process.stdout.write(" -> ");
+        }
+        curr = curr.next;
+    }
+    console.log();
+}
+
+// Driver code
+
+// Creating the list 1->2->4
+let head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(4);
+
+let val = 3, pos = 3;
+head = insertPos(head, pos, val);
+printList(head);
