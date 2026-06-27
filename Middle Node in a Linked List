@@ -1,0 +1,42 @@
+class Node {
+    constructor(x) {
+        this.data = x;
+        this.next = null;
+    }
+}
+
+function getLength(head) {
+
+    let length = 0;
+
+    // Count nodes in linked list
+    while (head) {
+        length++;
+        head = head.next;
+    }
+
+    return length;
+}
+
+function getMiddle(head) {
+
+    const length = getLength(head);
+
+    // traverse till we reach half of the length
+    let midIndex = Math.floor(length / 2);
+    while (midIndex-- > 0) {
+        head = head.next;
+    }
+
+    return head.data;
+}
+
+// Driver Code
+const head = new Node(10);
+head.next = new Node(20);
+head.next.next = new Node(30);
+head.next.next.next = new Node(40);
+head.next.next.next.next = new Node(50);
+head.next.next.next.next.next = new Node(60);
+
+console.log(getMiddle(head));
