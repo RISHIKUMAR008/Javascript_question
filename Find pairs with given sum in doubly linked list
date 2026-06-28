@@ -1,0 +1,51 @@
+// JavaScript program to find a pair with given sum x
+// using map
+class Node {
+    constructor(value) {
+        this.data = value;
+        this.next = null;
+    }
+}
+
+function findPairsWithGivenSum(head, target) {
+    let ans = [];
+    let visited = new Set();
+    let currNode = head;
+
+    // Traverse the doubly linked list
+    while (currNode !== null) {
+        let x = target - currNode.data;
+
+        // Check if the target exists in the visited set
+        if (visited.has(x)) {
+            // Pair found
+            ans.push([ x, currNode.data ]);
+        }
+
+        // Add the current node's value to the visited set
+        visited.add(currNode.data);
+        currNode = currNode.next;
+    }
+
+    // Sort the pairs
+    ans.sort((a, b) => a[0] - b[0]);
+
+    return ans;
+}
+
+let head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(4);
+head.next.next.next = new Node(5);
+
+let target = 7;
+let pairs = findPairsWithGivenSum(head, target);
+
+if (pairs.length === 0) {
+    console.log("No pairs found.");
+}
+else {
+    for (let pair of pairs) {
+        console.log(pair[0] + " " + pair[1]);
+    }
+}
