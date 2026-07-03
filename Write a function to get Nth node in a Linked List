@@ -1,0 +1,36 @@
+// JavaScript program to find the n'th node in
+// a linked list using recursion
+
+class Node {
+    constructor(new_data) {
+        this.data = new_data;
+        this.next = null;
+    }
+}
+
+function GetNth(head, index) {
+
+    // Base case: if the list is empty or index is out of
+    // bounds
+    if (head === null) {
+        return -1;
+    }
+
+    // Base case: if count equals n, return node's data
+    if (index === 1) {
+        return head.data;
+    }
+
+    // Recursive case: move to the next node and decrease
+    // index
+    return GetNth(head.next, index - 1);
+}
+
+// Create a hard-coded linked list:
+// 1 -> 2 -> 3 -> 4 -> 5
+let head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+head.next.next.next = new Node(4);
+head.next.next.next.next = new Node(5);
+console.log("Element at index 3 is", GetNth(head, 3));
