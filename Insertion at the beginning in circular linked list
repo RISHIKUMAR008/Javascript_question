@@ -1,0 +1,53 @@
+class Node {
+    constructor(x) {
+        this.data = x;
+        this.next = null;
+    }
+}
+
+// Function to insert at beginning of circular linked list
+function insertAtBeginning(last, key) {
+    let newNode = new Node(key);
+
+    if (last === null) {
+        newNode.next = newNode;
+        return newNode;
+    }
+
+    newNode.next = last.next;
+    last.next = newNode;
+
+    return last;
+}
+
+// Function to print circular linked list
+function printList(last) {
+    if (last === null) return;
+
+    let head = last.next;
+    let temp = head;
+
+    while (true) {
+        process.stdout.write(temp.data.toString());
+        temp = temp.next;
+        if (temp !== head) {
+            process.stdout.write(" -> ");
+        } else {
+            break;
+        }
+    }
+    console.log();
+}
+
+// Driver code
+let first = new Node(2);
+first.next = new Node(3);
+first.next.next = new Node(4);
+
+let last = first.next.next;
+last.next = first;
+
+// Insert 5 at beginning
+last = insertAtBeginning(last, 5);
+
+printList(last);
