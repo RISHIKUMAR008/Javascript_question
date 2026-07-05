@@ -1,0 +1,56 @@
+// JavaScript Program to insert a node at the beginning of doubly
+// linked list
+
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+// Function to insert a new node at the front of the doubly linked list
+function insertAtFront(head, newData) {
+    // Create a new node
+    let newNode = new Node(newData);
+
+    // Make next of new node as head
+    newNode.next = head;
+
+    // Change prev of head node to new node
+    if (head !== null) {
+        head.prev = newNode;
+    }
+
+    // Return the new node as the head of the doubly linked list
+    return newNode;
+}
+
+// Function to print the doubly linked list in required format
+function printList(head) {
+    let curr = head;
+    let result = "";
+    while (curr !== null) {
+        result += curr.data;
+        if (curr.next !== null) {
+            result += " <-> ";
+        }
+        curr = curr.next;
+    }
+    console.log(result);
+}
+
+// Driver Code
+// Create a hardcoded doubly linked list:
+// 2 <-> 3 <-> 4 -> NULL
+let head = new Node(2);
+head.next = new Node(3);
+head.next.prev = head;
+head.next.next = new Node(4);
+head.next.next.prev = head.next;
+
+// Insert a new node at the front of the list
+head = insertAtFront(head, 1);
+
+// Print the updated list
+printList(head);
