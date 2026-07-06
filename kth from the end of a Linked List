@@ -1,0 +1,38 @@
+class Node {
+    constructor(new_data) {
+        this.data = new_data;
+        this.next = null;
+    }
+}
+
+// Function to find the kth node from the last of a linked list
+function findKthFromLast(head, k) {
+    let len = 0;
+    let temp = head;
+
+    // Count the number of nodes in Linked List
+    while (temp !== null) {
+        temp = temp.next;
+        len++;
+    }
+
+    // Check if value of k is not more than length of the linked list
+    if (len < k) return -1;
+
+    temp = head;
+
+    // Get the (len - k + 1)th node from the beginning
+    for (let i = 1; i < len - k + 1; i++)
+        temp = temp.next;
+
+    return temp.data;
+}
+// Driver Code
+// Create a hard-coded linked list: 35 -> 15 -> 4 -> 20
+let head = new Node(35);
+head.next = new Node(15);
+head.next.next = new Node(4);
+head.next.next.next = new Node(20);
+
+// Function Call to find the 4th node from end
+console.log(findKthFromLast(head, 4));
