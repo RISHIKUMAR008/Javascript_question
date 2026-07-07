@@ -1,0 +1,40 @@
+// returns count of a character in the string
+function countFrequency(s, ch) {
+    let count = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        // check if current character matches ch
+        if (s[i] === ch)
+            count++;
+    }
+
+    return count;
+}
+
+// function to sort the string according to frequency
+function frequencySort(s) {
+    let n = s.length;
+
+    // array to store frequency with corresponding character
+    let vp = [];
+
+    // insert frequency and character into the array
+    for (let i = 0; i < n; i++) {
+        vp.push([countFrequency(s, s[i]), s[i]]);
+    }
+
+    // sort the array by frequency (pair first value)
+    vp.sort((a, b) => a[0] - b[0]);
+
+    // build the final answer string
+    let ans = "";
+    for (let i = 0; i < vp.length; i++)
+        ans += vp[i][1];
+
+    return ans;
+}
+
+// Driver Code
+let s = "geeksforgeeks";
+let ans = frequencySort(s);
+console.log(ans);
