@@ -1,0 +1,31 @@
+// Function to compute beauty sum
+function beautySum(s) {
+    const n = s.length;
+    let total = 0;
+
+    // Loop through all substrings
+    for (let i = 0; i < n; i++) {
+        const freq = {};
+
+        for (let j = i; j < n; j++) {
+            const ch = s[j];
+            freq[ch] = (freq[ch] || 0) + 1;
+
+            const values = Object.values(freq);
+            const maxFreq = Math.max(...values);
+            const minFreq = Math.min(...values);
+
+            total += (maxFreq - minFreq);
+        }
+    }
+
+    return total;
+}
+
+// Main function
+function main() {
+    const s = "xyx";
+    console.log("Beauty Sum:", beautySum(s));
+}
+
+main();
