@@ -1,0 +1,52 @@
+class Node {
+    constructor(x) {
+        this.data = x;
+        this.next = null;
+    }
+}
+
+function removeDuplicates(head) {
+    let curr = head;
+
+    // Traverse the list
+    while (curr && curr.next) {
+    
+        // Check if next value is the same as curr
+        if (curr.data === curr.next.data) {
+            let nextNext = curr.next.next;
+            curr.next = nextNext;
+        }
+        else {
+            curr = curr.next;
+        }
+    }
+
+    return head;
+}
+
+// Driver code
+// Create a sorted linked list:
+// 11->11->11->13->13->20
+let head = new Node(11);
+head.next = new Node(11);
+head.next.next = new Node(11);
+head.next.next.next = new Node(13);
+head.next.next.next.next = new Node(13);
+head.next.next.next.next.next = new Node(20);
+
+// original list
+let temp = head;
+while (temp !== null) {
+    process.stdout.write(temp.data + " ");
+    temp = temp.next;
+}
+console.log();
+
+head = removeDuplicates(head);
+
+// list with no duplicates
+temp = head;
+while (temp !== null) {
+    process.stdout.write(temp.data + " ");
+    temp = temp.next;
+}
