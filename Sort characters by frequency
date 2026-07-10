@@ -1,0 +1,30 @@
+class Solution {
+    frequencySort(s) {
+        // Create frequency array for characters 'a' to 'z'
+        let freq = Array(26).fill(0).map((_, i) => [0, String.fromCharCode(i + 97)]);
+
+        // Count the frequency of each character in the input string
+        for (let ch of s) {
+            freq[ch.charCodeAt(0) - 97][0]++;
+        }
+
+        // Sort the frequency array by count (descending), then alphabetically
+        freq.sort((a, b) => {
+            if (a[0] !== b[0]) return b[0] - a[0];
+            return a[1].localeCompare(b[1]);
+        });
+
+        // Build the result array with characters having non-zero frequency
+        let result = [];
+        for (let [count, char] of freq) {
+            if (count > 0) result.push(char);
+        }
+        return result;
+    }
+}
+
+// Create instance and test the function
+const sol = new Solution();
+const s = "tree";
+const result = sol.frequencySort(s);
+console.log(result);
