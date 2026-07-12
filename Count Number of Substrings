@@ -1,0 +1,37 @@
+// Function to count substrings with at most k distinct characters
+function atMostKDistinct(s, k) {
+    let left = 0, res = 0;
+    const freq = new Map();
+
+    // Iterate with right pointer
+    for (let right = 0; right < s.length; right++) {
+        freq.set(s[right], (freq.get(s[right]) || 0) + 1);
+
+        // Shrink window if distinct characters exceed k
+        while (freq.size > k) {
+            freq.set(s[left], freq.get(s[left]) - 1);
+            if (freq.get(s[left]) === 0) freq.delete(s[left]);
+            left++;
+        }
+
+        // Count substrings in current window
+        res += (right - left + 1);
+    }
+    return res;
+}
+
+// Function to count substrings with exactly k distinct characters
+function countSubstrings(s, k) {
+    return atMostKDistinct(s, k) - atMostKDistinct(s, k - 1);
+}
+
+function main() {
+    // Sample test
+    const s = "pqpqs";
+    const k = 2;
+
+    // Output the result
+    console.log("Count:", countSubstrings(s, k)); // Output: 7
+}
+
+main();
