@@ -1,0 +1,53 @@
+class Solution {
+    exist(board, word) {
+        // Get number of rows
+        const rows = board.length;
+        // Get number of columns
+        const cols = board[0].length;
+
+        // DFS function
+        const dfs = (i, j, idx) => {
+            // If all characters matched
+            if (idx === word.length) return true;
+            // Boundary and character check
+            if (i < 0 || j < 0 || i >= rows || j >= cols || board[i][j] !== word[idx]) {
+                return false;
+            }
+
+            // Store character and mark visited
+            const temp = board[i][j];
+            board[i][j] = '#';
+
+            // Explore all four directions
+            const found = dfs(i + 1, j, idx + 1) ||
+                          dfs(i - 1, j, idx + 1) ||
+                          dfs(i, j + 1, idx + 1) ||
+                          dfs(i, j - 1, idx + 1);
+
+            // Restore character
+            board[i][j] = temp;
+
+            return found;
+        };
+
+        // Try starting from each cell
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                if (dfs(i, j, 0)) return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+// Driver code
+let sol = new Solution();
+let board = [
+    ['A','B','C','E'],
+    ['S','F','C','S'],
+    ['A','D','E','E']
+];
+console.log(sol.exist(board, "ABCCED")); // true
+console.log(sol.exist(board, "SEE"));    // true
+console.log(sol.exist(board, "ABCB"));   // false
