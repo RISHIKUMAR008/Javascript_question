@@ -1,0 +1,26 @@
+class Solution {
+    // Function to find Nth root of M
+    nthRoot(n, m) {
+        // Loop from 1 to m
+        for (let i = 1; i <= m; i++) {
+            // Compute i^n
+            let power = Math.pow(i, n);
+
+            // If equal to m, return i
+            if (power === m) return i;
+
+            // If exceeds m, break
+            if (power > m) break;
+        }
+
+        // If not found, return -1
+        return -1;
+    }
+}
+
+// Main execution
+const sol = new Solution();
+let n = 3, m = 27;
+
+// Find nth root
+console.log("Nth Root:", sol.nthRoot(n, m));
