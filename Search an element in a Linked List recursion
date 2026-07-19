@@ -1,0 +1,42 @@
+// a Linked List Node
+class Node {
+
+	// constructor to initialize a new node with data
+    constructor(x) {
+        this.data = x;
+        this.next = null;
+    }
+}
+
+// checks whether the key is present in linked list
+function searchKey(head, key) {
+
+    // base case
+    if (head === null) 
+        return false;
+
+    // if key is present in current node, return true
+    if (head.data === key) 
+        return true;
+
+    // recur for remaining list
+    return searchKey(head.next, key);
+}
+
+// Driver Code
+
+// create a hard-coded linked list:
+// 1 -> 2 -> 3 -> 4 -> 5
+let head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+head.next.next.next = new Node(4);
+head.next.next.next.next = new Node(5);
+
+// key to search in the linked list
+let key = 5;
+
+if (searchKey(head, key))
+    console.log("true");
+else
+    console.log("false");
