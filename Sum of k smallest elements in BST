@@ -1,0 +1,54 @@
+// Javascript program to find Sum Of All Elements smaller
+// than or equal to Kth Smallest Element In BST
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+// Recursive function to calculate the sum of the 
+// first k smallest elements
+function calculateSum(root, k, ans) {
+    if (root.left !== null) {
+        calculateSum(root.left, k, ans);
+    }
+
+    if (k.val > 0) {
+        ans.val += root.data;
+        k.val--;
+    } 
+    else {
+        return;
+    }
+
+    if (root.right !== null) {
+        calculateSum(root.right, k, ans);
+    }
+}
+
+// Function to find the sum of the first k 
+// smallest elements
+function sumKSmallest(root, k) {
+    let ans = { val: 0 };
+    let kObj = { val: k };
+    calculateSum(root, kObj, ans);
+    return ans.val;
+}
+
+// Input BST
+//         8
+//       /   \
+//      7     10
+//    /      /  \
+//   2      9    13
+let root = new Node(8);
+root.left = new Node(7);
+root.right = new Node(10);
+root.left.left = new Node(2);
+root.right.left = new Node(9);
+root.right.right = new Node(13);
+
+let k = 3;
+console.log(sumKSmallest(root, k));
