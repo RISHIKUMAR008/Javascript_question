@@ -1,0 +1,73 @@
+class TwoStacks {
+    constructor(n)
+    {
+        this.size = n;
+        this.arr = new Array(n);
+        this.mid = n / 2;
+        
+        // top1 starts from 0
+        this.top1 = -1; 
+        
+        // top2 starts from mid
+        this.top2 = Math.floor(this.mid) - 1; 
+    }
+
+    push1(x)
+    {
+        if (this.top1 === Math.floor(this.mid) - 1) {
+            
+            // top1 reaches middle of the array
+            // so stack1 is full
+            return;
+        }
+        this.top1++;
+        this.arr[this.top1] = x;
+    }
+
+    push2(x)
+    {
+        if (this.top2 === this.size - 1) {
+            
+            // top2 reaches end of the array
+            // so stack2 is full
+            return;
+        }
+        this.top2++;
+        this.arr[this.top2] = x;
+    }
+
+    pop1()
+    {
+        if (this.top1 === -1) {
+            
+            // that means stack1 in empty so return -1
+            return -1;
+        }
+        let ele = this.arr[this.top1];
+        this.top1--;
+        return ele;
+    }
+
+    pop2()
+    {
+        if (this.top2 === Math.floor(this.mid) - 1) {
+            
+            // that means stack2 in empty so return -1
+            return -1;
+        }
+        let ele = this.arr[this.top2];
+        this.top2--;
+        return ele;
+    }
+}
+
+const ts = new TwoStacks(5);
+ts.push1(2);
+ts.push1(3);
+ts.push2(4);
+
+let res = "";
+res += ts.pop1() + " ";
+res += ts.pop2() + " ";
+res += ts.pop2() + " ";
+console.log(res.trim());
