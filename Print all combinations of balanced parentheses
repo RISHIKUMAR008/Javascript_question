@@ -1,0 +1,37 @@
+// JavaScript program to generate all the combinations of balanced
+// parenthesis.
+
+// Function to generate valid parentheses sequences
+function validParentheses(n, open, curr, res) {
+    
+    // If the current sequence has reached
+    // the length of 2 * n, add it to the result
+    if (curr.length === 2 * n) {
+        res.push(curr);
+        return;
+    }
+
+    // Add opening parenthesis if we haven't used all n opening parentheses
+    if (open < n) validParentheses(n, open + 1, curr + '(', res);
+
+    // Add closing parenthesis if the number of 
+    // closing parentheses is less than the number of opening ones
+    if (curr.length - open < open) validParentheses(n, open, curr + ')', res);
+}
+
+// Function to return all valid parentheses sequences
+function generateParentheses(n) {
+    let res = [];
+    
+    // Start recursion with 0 open parentheses and an empty string
+    validParentheses(n/2, 0, '', res);  
+    return res;
+}
+
+// Driver code
+let n = 4; 
+let res = generateParentheses(n);
+
+res.forEach(seq => {
+    console.log(seq);
+});
