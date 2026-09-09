@@ -1,0 +1,70 @@
+class Solution {
+    // Variant 1: Check if two numbers sum to target using two-pointer approach
+    twoSumExists(arr, target) {
+        // Create array of [value, originalIndex] pairs to keep track of original positions
+        let numsWithIndex = arr.map((val, idx) => [val, idx]);
+        
+        // Sort array by the value to apply two-pointer technique
+        numsWithIndex.sort((a, b) => a[0] - b[0]);
+
+        // Initialize pointers at start and end of the array
+        let left = 0, right = arr.length - 1;
+
+        // Loop until pointers cross
+        while (left < right) {
+            // Calculate current sum of the two values
+            let sum = numsWithIndex[left][0] + numsWithIndex[right][0];
+
+            if (sum === target) {
+                // Found a pair with sum equal to target
+                return "YES";
+            } else if (sum < target) {
+                // Sum too small, move left pointer to right to increase sum
+                left++;
+            } else {
+                // Sum too large, move right pointer to left to decrease sum
+                right--;
+            }
+        }
+        
+        // No pair found
+        return "NO";
+    }
+
+    // Variant 2: Return indices of two numbers that sum to target
+    twoSumIndices(arr, target) {
+        // Create array of [value, originalIndex] pairs
+        let numsWithIndex = arr.map((val, idx) => [val, idx]);
+        
+        // Sort array based on value
+        numsWithIndex.sort((a, b) => a[0] - b[0]);
+
+        let left = 0, right = arr.length - 1;
+
+        while (left < right) {
+            let sum = numsWithIndex[left][0] + numsWithIndex[right][0];
+
+            if (sum === target) {
+                // Return original indices of the found pair
+                return [numsWithIndex[left][1], numsWithIndex[right][1]];
+            } else if (sum < target) {
+                // Increase sum by moving left pointer right
+                left++;
+            } else {
+                // Decrease sum by moving right pointer left
+                right--;
+            }
+        }
+        
+        // No pair found
+        return [-1, -1];
+    }
+}
+
+// Driver code
+const sol = new Solution();
+const arr = [2, 6, 5, 8, 11];
+const target = 14;
+
+console.log(sol.twoSumExists(arr, target));  // Output: YES
+console.log(sol.twoSumIndices(arr, target)); // Output: [1, 3]
