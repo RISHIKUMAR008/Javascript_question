@@ -1,0 +1,38 @@
+class Node {
+    constructor(x) {
+        this.data = x;
+        this.next = null;
+    }
+}
+
+function printList(head) {
+
+    // return if list is empty
+    if (head === null)
+        return;
+
+    // initialize current node as head
+    let curr = head;
+
+    // loop through the circular linked list
+    do {
+
+        // print the data of current node
+        process.stdout.write(curr.data + ' ');
+
+        // move to the next node
+        curr = curr.next;
+
+    } while (curr!== head);
+}
+
+// Create a hard-coded linked list
+// 11 -> 2 -> 56 -> 12
+let head = new Node(11);
+head.next = new Node(2);
+head.next.next = new Node(56);
+head.next.next.next = new Node(12);
+
+head.next.next.next.next = head;
+
+printList(head);
