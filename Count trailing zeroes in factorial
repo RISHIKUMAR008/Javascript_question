@@ -1,0 +1,25 @@
+function factorial(n) {
+    let fact = 1n; // Use BigInt for large numbers
+    for (let i = 1n; i <= BigInt(n); ++i) {
+        fact *= i;
+    }
+    return fact;
+}
+
+function trailingZeroes(n) {
+    let fact = factorial(n);
+    let count = 0;
+
+    // Count trailing zeros by
+    // dividing the factorial by 10 using BigInt
+    while (fact % 10n === 0n) {
+        count++;
+        fact /= 10n;
+    }
+
+    return count;
+}
+
+
+let n = 43; // Tested with 43
+console.log(trailingZeroes(n)); // Output: 9
