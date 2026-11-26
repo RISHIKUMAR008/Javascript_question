@@ -1,0 +1,67 @@
+class Node {
+    constructor(x)
+    {
+        this.data = x;
+        this.left = this.right = null;
+    }
+}
+
+// Function to convert binary tree into its mirror tree.
+function mirror(root)
+{
+    // Base case
+    if (root === null)
+        return;
+
+    // Mirror left subtree
+    mirror(root.left);
+
+    // Mirror right subtree
+    mirror(root.right);
+
+    // Swap left and right child
+    let temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+}
+
+function printLevelOrder(root)
+{
+    if (root === null) {
+        console.log("[]");
+        return;
+    }
+
+    let ans = [];
+    let q = [ root ];
+
+    while (q.length > 0) {
+        let curr = q.shift();
+
+        if (curr !== null) {
+            ans.push(curr.data.toString());
+            q.push(curr.left);
+            q.push(curr.right);
+        }
+        else {
+            ans.push("N");
+        }
+    }
+
+    // Remove trailing nulls
+    while (ans.length > 0 && ans[ans.length - 1] === "N")
+        ans.pop();
+
+    console.log("[" + ans.join(", ") + "]");
+}
+
+// Driver Code
+// root = [1, 2, 3, 4, 5]
+let root = new Node(1);
+root.left = new Node(2);
+root.right = new Node(3);
+root.left.left = new Node(4);
+root.left.right = new Node(5);
+
+mirror(root);
+printLevelOrder(root);
