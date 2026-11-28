@@ -1,0 +1,48 @@
+function getMaxFreq(s, l, r) {
+    const m = {};
+    let res = 1;
+
+    // Count the frequency of each character 
+    // in the substring
+    for (let i = l; i <= r; ++i) {
+        m[s[i]] = (m[s[i]] || 0) + 1;
+    }
+
+    // Find the maximum frequency of any character
+    res = Math.max(...Object.values(m));
+
+    return res;
+}
+
+// Function to find the maximum length of substring
+// with at most k changes
+function longestSubstr(s, k) {
+    let maxlen = 1;
+    const n = s.length;
+
+    // Try every possible starting point of the substring
+    for (let l = 0; l < n; ++l) {
+        for (let r = l; r < n; ++r) {
+
+            // Get the maximum frequency of any 
+            // character in the substring [l, r]
+            const f = getMaxFreq(s, l, r);
+
+            // If the number of changes required is <= k,
+            // update the maximum length
+            if (r - l + 1 - f <= k)
+                maxlen = Math.max(maxlen, r - l + 1);
+        }
+    }
+
+    return maxlen;
+}
+
+// Driver code
+let k = 2;
+let s = "ABABA";
+console.log(longestSubstr(s, k));
+
+k = 4;
+let B = "HHHHHH";
+console.log(longestSubstr(B, k));
